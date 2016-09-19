@@ -1,12 +1,43 @@
 html {
-  background: url("./assets/tools.jpeg") no-repeat center center fixed;
+  background: url("./assets/tools.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
 }
 
+#cover {
+    margin: auto;
+}
+
 h1 {
+  padding-top: 1.5em;
 color: white;
 text-align: center;
+font-family: Helvetica;
+font-size: 6em;
+}
+
+h2  {
+
+font-size: 4em;
+font-family: Helvetica;
+text-align: center;
+}
+
+h2 a {
+  text-decoration: none;
+  color: yellow;
+
+}
+
+h3  {
+color: white;
+font-size: 2em;
+font-family: Helvetica;
+text-align: center;
+}
+
+h3 a {
+  color: yellow;
 }
