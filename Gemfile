@@ -1,0 +1,10 @@
+source 'http://rubygems.org'
+
+gem 'sinatra'
+gem 'tux'
+gem 'shotgun'
+gem 'thin'
+gem 'rake'
+gem 'activerecord'
+gem 'pry'
+gem 'bcrypt'
