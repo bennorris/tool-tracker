@@ -1,4 +1,4 @@
-require 'rubygems'
-require 'bundler'
+require './config/environment'
 
-Bundler.require
+
+run ApplicationController
