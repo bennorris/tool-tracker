@@ -25,12 +25,21 @@ get '/company/signup' do
   erb :'company/signup'
 end
 
+get '/company/:slug' do
+  erb :'company/show'
+end
+
 get '/employee/signup' do
   erb :'employee/signup'
 end
 
 post '/home' do
 
+end
+
+get '/logout' do
+  session.clear
+  redirect to '/login'
 end
 
 
