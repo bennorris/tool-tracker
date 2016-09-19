@@ -22,11 +22,11 @@ get '/signup' do
 end
 
 get '/company/signup' do
-
+  erb :'company/signup'
 end
 
 get '/employee/signup' do
-
+  erb :'employee/signup'
 end
 
 post '/home' do
