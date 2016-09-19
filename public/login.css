@@ -12,20 +12,21 @@ text-align: center;
 }
 
 h1  {
-font-family: Helvetica;
-color: white;
-font-size: 4.5em;}
+  font-family: Helvetica;
+  color: white;
+  font-size: 4.5em;}
+
 label {
-  text-align: center;
-font-family: Helvetica;
-color: white;
-font-size: 4.5em;
+    text-align: center;
+  font-family: Helvetica;
+  color: white;
+  font-size: 4.5em;
 }
 
 input {
-font-size: 1em;
-font-family: Helvetica;
-width: 50%;
+  font-size: 1em;
+  font-family: Helvetica;
+  width: 50%;
 }
 
 input[type="submit"]{

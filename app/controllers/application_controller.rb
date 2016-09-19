@@ -10,11 +10,23 @@ configure do
 end
 
 get '/' do
-  erb :index
+  erb :'home/index'
 end
 
 get '/login' do
-  erb :login
+  erb :'home/login'
+end
+
+get '/signup' do
+  erb :'home/signup'
+end
+
+get '/company/signup' do
+
+end
+
+get '/employee/signup' do
+
 end
 
 post '/home' do

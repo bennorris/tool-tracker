@@ -1,0 +1,53 @@
+html {
+  background: url("./assets/crane.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;;
+
+}
+
+.intro {
+margin-top: 7%;}
+
+.select {
+  text-align: center;
+  display: inline-block;
+  margin: 0 auto;
+  width: 100%;
+  }
+
+/*.employee {
+  margin-top: 30px;
+  text-align: center;
+  padding-left: 8%;
+  display: inline-block;
+}*/
+
+h1 {
+  margin-top: padding-top: 30px;
+  text-align: center;
+  font-family: Helvetica;
+  color: white;
+  font-size: 3.5em;
+}
+
+h2  {
+  text-align: center;
+  font-family: Helvetica;
+  color: white;
+  font-size: 3em;
+  display: inline-block;
+  outline: solid;
+  outline-offset: 10px;
+  margin-right: 5%;
+  margin-left: 5%;
+}
+
+h2:hover {
+  color: yellow;
+}
+
+a {
+  text-decoration: none;
+}
