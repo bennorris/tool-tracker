@@ -1,0 +1,42 @@
+html {
+  background-color: #F5F5F5;
+}
+
+h1 {
+  color: #BF360C;
+  font-family: 'Playfair Display', serif;
+}
+
+#add_tool {
+  color: #0D47A1;
+  padding-left: 5%;
+  margin-top: 1%;
+}
+
+.title {
+  text-align: center;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.add_equipment {
+  width: 25%;
+  border: 3px solid #0D47A1;
+  border-radius: 2px;
+}
+
+.add_equipment form {
+  padding-left: 5%;
+  padding-bottom: 5%;
+  color: #0D47A1;
+}
+
+form {
+width: 25%;
+font-family: 'Playfair Display', serif;
+}
+
+h2 {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+}

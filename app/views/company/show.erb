@@ -2,16 +2,55 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title><%=@company.name%></title>
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
+    <link rel="stylesheet" href="<%=url('/company_show.css')%>" media="screen" title="no title" charset="utf-8">
+      <title><%=@company.name%></title>
   </head>
   <body>
-    <h1>The <%=@company.name%> Tool Tracker.</h1>
-    <h3>All tools will go here.</h3>
-    <h3>Available tools will go here</h3>
-    <h3>Checked out tools will go here.</h3>
+    <div class="title">
+      <h1>The <%=@company.name%> Equipment Tracker.</h1>
+    </div>
 
-    <h1>Add a tool</h1>
-    
+    <%if @company.tools.size < 1%>
+      <h2>It looks like you haven't added any equipment yet.<h2>
+    <%else%>
+      <h2>All Tools:
+      <%@company.tools.each do |tool|%>
+      <%=tool.name%>
+      <%end%>
+      <%end%>
+
+<%if @company.tools.size > 1%>
+    <h3>Available tools:</h3>
+    <%@company.tools.each do |tool|%>
+    <%if tool.available == true%>
+        <%=tool.name%>
+        <%end%>
+      <%end%>
+      <%end%>
+
+  <%if @company.tools.size > 1%>
+    <h3>Checked out tools:</h3>
+    <%@company.tools.each do |tool|%>
+      <%if tool.available == false%>
+        <%=tool.name%>
+        <%end%>
+      <%end%>
+      <%end%>
+
+    <div class="add_equipment">
+      <h1 id="add_tool">Add Equipment:</h1>
+      <form class="" action="/tools/new" method="post">
+        <label for="manufacturer">Manufacturer: <input type="text" name="tool[manufacturer]" id="manufacturer"></label><br>
+        <label for="model">Model: <input type="text" name="tool[model]" id="model"></label><br>
+        <label for="category">Category: <input type="text" name="tool[category]" id="category"></label><br>
+        <input type="submit" name="submit" value="Create Equipment">
+      </form>
+      </div>
+
+
+      </div>
+
     <h3><a href="/logout">log out</a></h3>
   </body>
 </html>
