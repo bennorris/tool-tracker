@@ -1,0 +1,33 @@
+html {
+  background: url("./assets/tools.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.user_input {
+margin-top: 10%;
+text-align: center;
+}
+
+h1  {
+font-family: Helvetica;
+color: white;
+font-size: 4.5em;}
+label {
+  text-align: center;
+font-family: Helvetica;
+color: white;
+font-size: 4.5em;
+}
+
+input {
+font-size: 1em;
+font-family: Helvetica;
+width: 50%;
+}
+
+input[type="submit"]{
+  width: 25%;
+}

@@ -13,5 +13,13 @@ get '/' do
   erb :index
 end
 
+get '/login' do
+  erb :login
+end
+
+post '/home' do
+
+end
+
 
 end
