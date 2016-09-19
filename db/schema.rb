@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160919172548) do
+ActiveRecord::Schema.define(version: 20160919182615) do
 
   create_table "companies", force: :cascade do |t|
     t.string "name"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20160919172548) do
     t.string  "model"
     t.string  "category"
     t.integer "company_id"
+    t.boolean "available"
   end
 
 end
