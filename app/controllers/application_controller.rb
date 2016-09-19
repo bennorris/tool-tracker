@@ -21,14 +21,6 @@ get '/signup' do
   erb :'home/signup'
 end
 
-get '/company/signup' do
-  erb :'company/signup'
-end
-
-get '/company/:slug' do
-  erb :'company/show'
-end
-
 get '/employee/signup' do
   erb :'employee/signup'
 end

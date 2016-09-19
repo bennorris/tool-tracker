@@ -16,13 +16,18 @@ color: white;
 text-align: center;
 font-family: Helvetica;
 font-size: 6em;
+margin-bottom: 2px;
 }
 
 h2  {
-
+color: white;
 font-size: 4em;
 font-family: Helvetica;
 text-align: center;
+}
+
+#tagline {
+  margin-top: 1px;
 }
 
 h2 a {

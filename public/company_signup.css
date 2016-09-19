@@ -1,0 +1,25 @@
+html {
+  background: url("./assets/background_texture.png");
+}
+
+.signup_form {
+  text-align: right;
+  width: 100%;
+  margin: 0 auto;
+}
+
+form {
+  margin-top: 10%;
+  margin-right: 15%;
+}
+
+label {
+  font-family: 'Playfair Display', serif;;
+  font-size: 3.5em;
+  color: white;
+}
+
+input {
+  font-size: 0.75em;
+
+}
