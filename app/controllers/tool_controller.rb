@@ -10,6 +10,9 @@ class ToolController < ApplicationController
     redirect to "/company/#{@company.slug}"
   end
 
+  get '/tools/:slug' do
+    erb :'tools/show_individual'
+  end
 
 
 end

@@ -19,9 +19,10 @@
       <table id="checked_out_tools">
         <thead>
           <tr>
-            <th>Manufacturer</th>
-            <th>Model</th>
+            <th>Product</th>
+            <th>Notes</th>
             <th>Checked Out By</th>
+            <th>Edit</th>
           </tr>
         </thead>
         <%@company.tools.all.each do |tool|%>
@@ -29,9 +30,10 @@
         <%if tool.available == false %>
             <tbody>
             <tr>
-              <td><%=tool.manufacturer%></td>
-              <td><%=tool.model%></td>
+              <td><%=tool.product%></td>
+              <td><%=tool.notes%></td>
               <td><a href="/employees/<%="#{@employee.slug}"%>"><%=@employee.name%></a></td>
+              <td><a href="/tool/<%=tool.slug%>">Edit</a></td>
               <%end%>
         <%end%>
           </tr>
@@ -45,13 +47,13 @@
 
       <div class="tool_list">
         <div class="table_title">
-          <h2>AVAILABLE TOOLS:
+          <h2 class="tools_heading">AVAILABLE TOOLS:
           </div>
           <table id="available_tools">
             <thead>
               <tr>
-                <th>Manufacturer</th>
-                <th>Model</th>
+                <th>Product</th>
+                <th>Notes</th>
                 <th>Edit</th>
               </tr>
             </thead>
@@ -59,9 +61,9 @@
             <tbody>
             <tr>
               <%if tool.available == true %>
-              <td><%=tool.manufacturer%></td>
-              <td><%=tool.model%></td>
-              <td><a href="/tools">edit</a></td>
+              <td><%=tool.product%></td>
+              <td><%=tool.notes%></td>
+              <td><a href="/tools/<%=tool.slug%>">edit</a></td>
               <%end%>
             <%end%>
               </tr>
@@ -75,8 +77,8 @@
     <div class="add_equipment">
       <h1 id="add_tool">Add Tool:</h1>
       <form class="" action="/tools/new" method="post">
-        <label for="manufacturer">Manufacturer: <input type="text" name="tool[manufacturer]" id="manufacturer"></label><br>
-        <label for="model">Model: <input type="text" name="tool[model]" id="model"></label><br>
+        <label for="product">Product: <input type="text" name="tool[product]" id="product"></label><br>
+        <label for="notes">Notes: <input type="text" name="tool[notes]" id="notes"></label><br>
         <label for="category">Category: <input type="text" name="tool[category]" id="category"></label><br>
         <input type="hidden" name="[company_name]" value="<%=@company.name%>">
         <input type="hidden" name="tool[available]" value="true">
@@ -105,26 +107,28 @@
         <%else%>
           <div class="tool_list">
             <div class="table_title">
-            <h2>ALL TOOLS:</h2>
+            <h2 class="tools_heading">ALL TOOLS:</h2>
             </div>
             <table id="checked_out_tools">
               <thead>
                 <tr>
-                  <th>Manufacturer</th>
-                  <th>Model</th>
+                  <th>Product</th>
+                  <th>Notes</th>
                   <th>Available?</th>
+                  <th>Edit</th>
                 </tr>
               </thead>
               <%@company.tools.all.each do |tool|%>
               <tbody>
               <tr>
-                <td><%=tool.manufacturer%></td>
-                <td><%=tool.model%></td>
+                <td><%=tool.product%></td>
+                <td><%=tool.notes%></td>
                 <%if tool.available == true%>
                   <td>Yes</td>
                 <%else%>
                   <td>No</td>
                   <%end%>
+                  <td><a href="/tools/<%=tool.slug%>">edit</a></td>
               <%end%>
             </h2>
                 </tr>
@@ -138,7 +142,7 @@
           <%else%>
             <div class="tool_list">
               <div class="table_title">
-            <h2>ALL EMPLOYEES:</h2>
+            <h2 class="tools_heading">ALL EMPLOYEES:</h2>
               </div>
               <table id="available_tools">
                 <thead>

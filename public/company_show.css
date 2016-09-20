@@ -126,9 +126,10 @@ background: #EEEEEE;
 }
 
 .tool_list {
-  margin-left: 9%;
-  width: 40%;
-  display: inline-block;
+  margin: 0 auto;
+  width: 50%;
+  display: table;
+
 }
 
 .center_row {
@@ -144,4 +145,8 @@ background: #EEEEEE;
 
 .bottom-row {
   margin-top: 5%;
+}
+
+.tools_heading {
+  margin-top: 10%;
 }
