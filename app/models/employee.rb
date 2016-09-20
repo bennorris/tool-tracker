@@ -1,6 +1,7 @@
 class Employee < ActiveRecord::Base
   belongs_to :company
-  has_many :tools, through: :company
+  has_many :employee_tools
+  has_many :tools, through: :employee_tools
 
   def name
     self.first_name + " " + self.last_name
@@ -10,4 +11,10 @@ class Employee < ActiveRecord::Base
     name.gsub(" ", "-")
   end
 
+  def self.delete_all_now
+    self.all.each do |employee|
+      employee.delete
+    end
+  end
+  
 end

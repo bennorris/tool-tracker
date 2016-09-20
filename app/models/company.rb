@@ -6,4 +6,11 @@ class Company < ActiveRecord::Base
   def slug
     self.name.gsub(" ", "-")
   end
+
+  def self.delete_all_now
+    self.all.each do |company|
+      company.delete
+    end
+  end
+
 end
