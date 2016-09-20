@@ -10,8 +10,10 @@ class EmployeeController < ApplicationController
     redirect to "/company/#{@company.slug}"
   end
 
-  get '/employee/:slug' do
-  end 
+  get '/employees/:slug' do
+    @employee = Employee.find_by(first_name: params[:slug].split('-')[0], last_name: params[:slug].split('-')[1])
+    erb :'employee/show'
+  end
 
 
 
