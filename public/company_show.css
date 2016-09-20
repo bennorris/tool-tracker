@@ -1,14 +1,22 @@
 html {
-  background-color: #F5F5F5;
+  background: url("./assets/pencils.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 h1 {
-  color: #BF360C;
-  font-family: 'Playfair Display', serif;
+  color: white;
+  font-family: Helvetica;
+}
+
+#title_heading {
+  font-size: 4em;
 }
 
 #add_tool {
-  color: #0D47A1;
+  color: #FFEB3B;
   padding-left: 5%;
   margin-top: 1%;
 }
@@ -21,10 +29,10 @@ h1 {
 
 .add_equipment {
   width: 35%;
-  border: 3px solid #0D47A1;
+  border: 5px solid #FFEB3B;
   border-radius: 2px;
   display: inline-block;
-  min-height:300px;
+
   float: left;
   margin-left: 10%;
 }
@@ -32,27 +40,29 @@ h1 {
 .add_equipment form {
   padding-left: 5%;
   padding-bottom: 5%;
-  color: #0D47A1;
+  color: #FFEB3B;
+  font-size: 1.5em;
 }
 
 .add_employee {
   width: 35%;
-  border: 3px solid #E65100;
+  border: 5px solid #66BB6A;
   border-radius: 2px;
   display: inline-block;
-  min-height:300px;
   float: left;
   margin-left: 10%;
+
 }
 
 .add_employee form {
   padding-left: 5%;
   padding-bottom: 5%;
-  color: #E65100;
+  font-size: 1.5em;
+  color: #66BB6A;
 }
 
 #add_employee {
-  color: #E65100;
+  color: #66BB6A;
   padding-left: 5%;
   margin-top: 1%;
 }
@@ -60,33 +70,59 @@ h1 {
 
 form {
 width: 25%;
-font-family: 'Playfair Display', serif;
+font-family: Helvetica;
 }
 
 h2 {
-  /*text-align: center;*/
-  font-family: 'Playfair Display', serif;
+  font-family: Helvetica;
 }
 
 table {
   border-collapse: collapse;
 }
 
-td, th {
-  border: 2px solid #1B5E20;
-  padding: 20px;
-}
 
-th {
-  background-color: #C8E6C9;
-}
-
-#checked_out_tools {
+#checked_out_tools td{
+  border: 5px solid #FFEB3B;
+  padding: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-size: 2em;
 
 }
 
-#available_tools {
+#checked_out_tools th {
+  border: 5px solid #FFEB3B;
+  padding: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-size: 2em;
+  color: black;
+  background: #FFEB3B;
 
+}
+
+#available_tools td {
+  border: 5px solid #66BB6A;
+  padding: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-size: 2em;
+}
+
+#available_tools th{
+  border: 5px solid #66BB6A;
+  padding: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
+  font-size: 2em;
+  color: black;
+  background: #66BB6A;
+
+}
+
+td:hover {
+background: #EEEEEE;
 }
 
 .tool_list {
@@ -98,4 +134,14 @@ th {
 .center_row {
   width: 100%;
   display: block;
+  margin-top: 5%;
+}
+
+.table_title {
+  color: #EEEEEE;
+  text-align: center;
+}
+
+.bottom-row {
+  margin-top: 5%;
 }
