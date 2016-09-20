@@ -10,7 +10,7 @@ class Tool < ActiveRecord::Base
   end
 
   def slug
-    self.manufacturer.gsub(" ", "-")
+    self.product.gsub(" ", "-")
   end
 
 end

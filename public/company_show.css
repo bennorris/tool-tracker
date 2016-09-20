@@ -79,6 +79,8 @@ h2 {
 
 table {
   border-collapse: collapse;
+  width: 85%;
+  margin: 0 auto;
 }
 
 

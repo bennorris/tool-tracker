@@ -1,6 +1,6 @@
 class EmployeeController < ApplicationController
 
-  post '/employee/new' do
+  post '/employees/new' do
     @employee = Employee.new(params[:employee])
     @company = Company.find_by(name: params[:company])
     @company.employees << @employee

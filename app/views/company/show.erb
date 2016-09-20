@@ -34,6 +34,7 @@
               <td><%=tool.notes%></td>
               <td><a href="/employees/<%="#{@employee.slug}"%>"><%=@employee.name%></a></td>
               <td><a href="/tool/<%=tool.slug%>">Edit</a></td>
+
               <%end%>
         <%end%>
           </tr>
@@ -89,11 +90,10 @@
 <!--CREATE NEW EMPLOYEE -->
       <div class="add_employee">
         <h1 id="add_employee">Add Employee:</h1>
-        <form class="" action="/employee/new" method="post">
+        <form class="" action="/employees/new" method="post">
           <label for="first_name">First Name: <input type="text" name="employee[first_name]" id="first_name"></label><br>
           <label for="last_name">Last Name: <input type="text" name="employee[last_name]" id="last_name"></label><br>
-          <label for="employee_email">Email: <input type="text" name="email" id="employee_email"></label><br>
-          <label for="employee_phone">Phone: <input type="text" name="phone" id="employee_phone"></label><br>
+          <label for="employee_contact">Contact: <input type="text" name="employee[contact_info]" id="contact_info"></label><br>
           <input type="hidden" name="company" value="<%=@company.name%>">
           <input type="submit" name="submit" value="Add Employee">
         </form>
@@ -101,6 +101,7 @@
 </div>
 
 <div class="bottom-row">
+<!--ALL TOOLS -->
 
         <%if @company.tools.size < 1%>
           <h2>It looks like you haven't added any equipment yet.<h2>
@@ -137,6 +138,8 @@
           </div>
           <%end%>
 
+<!--ALL EMPLOYEES-->
+
           <%if @company.employees.size < 1%>
             <h2>It looks like you haven't added any employees yet.</h2>
           <%else%>
@@ -157,7 +160,7 @@
                 <tr>
                   <td><%=employee.first_name%></td>
                   <td><%=employee.last_name%></td>
-                  <td>contact info here</td>
+                  <td>employee.contact_info</td>
                 <%end%>
               </h2>
                   </tr>
