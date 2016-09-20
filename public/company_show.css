@@ -20,9 +20,10 @@ h1 {
 }
 
 .add_equipment {
-  width: 25%;
+  width: 35%;
   border: 3px solid #0D47A1;
   border-radius: 2px;
+  display: inline-block;
 }
 
 .add_equipment form {
@@ -31,12 +32,45 @@ h1 {
   color: #0D47A1;
 }
 
+.add_employee {
+  width: 35%;
+  border: 3px solid #E65100;
+  border-radius: 2px;
+  display: inline-block;
+}
+
+.add_employee form {
+  padding-left: 5%;
+  padding-bottom: 5%;
+  color: #E65100;
+}
+
+#add_employee {
+  color: #E65100;
+  padding-left: 5%;
+  margin-top: 1%;
+}
+
+
 form {
 width: 25%;
 font-family: 'Playfair Display', serif;
 }
 
 h2 {
-  text-align: center;
+  /*text-align: center;*/
   font-family: 'Playfair Display', serif;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td, th {
+  border: 2px solid #1B5E20;
+  padding: 20px;
+}
+
+th {
+  background-color: #C8E6C9;
 }
