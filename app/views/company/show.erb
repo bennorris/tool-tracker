@@ -77,6 +77,8 @@
         <label for="manufacturer">Manufacturer: <input type="text" name="tool[manufacturer]" id="manufacturer"></label><br>
         <label for="model">Model: <input type="text" name="tool[model]" id="model"></label><br>
         <label for="category">Category: <input type="text" name="tool[category]" id="category"></label><br>
+        <input type="hidden" name="[company_name]" value="<%=@company.name%>">
+        <input type="hidden" name="tool[available]" value="true">
         <input type="submit" name="submit" value="Create Tool">
       </form>
       </div>
