@@ -11,54 +11,62 @@
       <h1>The <%=@company.name%> Equipment Tracker.</h1>
     </div>
 
-    <%if @company.tools.size < 1%>
-      <h2>It looks like you haven't added any equipment yet.<h2>
-    <%else%>
-      <div class="tool_list">
-      <h2>All Tools:
-        <table>
-          <thead>
-            <tr>
-              <th>Manufacturer</th>
-              <th>Model</th>
-              <th>Available?</th>
-            </tr>
-          </thead>
-          <%@company.tools.each do |tool|%>
-          <tbody>
+    <%if @company.tools.size >= 1%>
+    <div class="tool_list">
+      <h2>Checked out tools:
+      <table id="checked_out_tools">
+        <thead>
           <tr>
-            <td><%=tool.manufacturer%></td>
-            <td><%=tool.model%></td>
-            <%if tool.available == true%>
-              <td>Yes</td>
-            <%else%>
-              <td>No</td>
+            <th>Manufacturer</th>
+            <th>Model</th>
+            <th>Checked Out By</th>
+          </tr>
+        </thead>
+        <%@company.tools.all.each do |tool|%>
+        <%@employee = Employee.find_by_id(tool.employees.ids)%>
+        <%if tool.available == false %>
+            <tbody>
+            <tr>
+              <td><%=tool.manufacturer%></td>
+              <td><%=tool.model%></td>
+              <td><a href="/employees>"><%=@employee.first_name + " " + @employee.last_name%></a></td>
               <%end%>
+        <%end%>
+          </tr>
+        </tbody>
+      </table>
+      </h2>
+    </div>
+      <%end%>
+
+      <%if @company.tools.size >= 1%>
+      <div class="tool_list">
+          <h2>Available tools:
+          <table id="available_tools">
+            <thead>
+              <tr>
+                <th>Manufacturer</th>
+                <th>Model</th>
+                <th>Edit</th>
+              </tr>
+            </thead>
+            <%@company.tools.all.each do |tool|%>
+            <tbody>
+            <tr>
+              <%if tool.available == true %>
+              <td><%=tool.manufacturer%></td>
+              <td><%=tool.model%></td>
+              <td><a href="/tools">edit</a></td>
+              <%end%>
+            <%end%>
+              </tr>
+            </tbody>
+          </table>
+          </h2>
           <%end%>
-            </tr>
-          </tbody>
-        </table>
       </div>
-      <%end%>
 
-<%if @company.tools.size > 1%>
-    <h3>Available tools:</h3>
-    <%@company.tools.each do |tool|%>
-    <%if tool.available == true%>
-        <%=tool.name%>
-        <%end%>
-      <%end%>
-      <%end%>
-
-  <%if @company.tools.size > 1%>
-    <h3>Checked out tools:</h3>
-    <%@company.tools.each do |tool|%>
-      <%if tool.available == false%>
-        <%=tool.name%>
-        <%end%>
-      <%end%>
-      <%end%>
-
+<div class="center_row">
     <div class="add_equipment">
       <h1 id="add_tool">Add Tool:</h1>
       <form class="" action="/tools/new" method="post">
@@ -79,6 +87,37 @@
           <input type="submit" name="submit" value="Add Employee">
         </form>
         </div>
+</div>
+        <%if @company.tools.size < 1%>
+          <h2>It looks like you haven't added any equipment yet.<h2>
+        <%else%>
+          <div class="tool_list">
+          <h2>All Tools:
+            <table>
+              <thead>
+                <tr>
+                  <th>Manufacturer</th>
+                  <th>Model</th>
+                  <th>Available?</th>
+                </tr>
+              </thead>
+              <%@company.tools.each do |tool|%>
+              <tbody>
+              <tr>
+                <td><%=tool.manufacturer%></td>
+                <td><%=tool.model%></td>
+                <%if tool.available == true%>
+                  <td>Yes</td>
+                <%else%>
+                  <td>No</td>
+                  <%end%>
+              <%end%>
+            </h2>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <%end%>
 
 
     <h3><a href="/logout">log out</a></h3>
