@@ -11,6 +11,7 @@ class ToolController < ApplicationController
   end
 
   get '/tools/:slug' do
+    
     erb :'tools/show_individual'
   end
 
