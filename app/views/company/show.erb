@@ -70,6 +70,7 @@
           </h2>
       </div>
 
+<!--CREATE NEW TOOL -->
 <div class="center_row">
     <div class="add_equipment">
       <h1 id="add_tool">Add Tool:</h1>
@@ -83,13 +84,15 @@
       </form>
       </div>
 
+<!--CREATE NEW EMPLOYEE -->
       <div class="add_employee">
         <h1 id="add_employee">Add Employee:</h1>
         <form class="" action="/employee/new" method="post">
           <label for="first_name">First Name: <input type="text" name="employee[first_name]" id="first_name"></label><br>
           <label for="last_name">Last Name: <input type="text" name="employee[last_name]" id="last_name"></label><br>
-          <label for="employee_email">Email: <input type="text" name="employee[email]" id="employee_email"></label><br>
-          <label for="employee_phone">Phone: <input type="text" name="employee[phone]" id="employee_phone"></label><br>
+          <label for="employee_email">Email: <input type="text" name="email" id="employee_email"></label><br>
+          <label for="employee_phone">Phone: <input type="text" name="phone" id="employee_phone"></label><br>
+          <input type="hidden" name="company" value="<%=@company.name%>">
           <input type="submit" name="submit" value="Add Employee">
         </form>
         </div>
