@@ -10,4 +10,9 @@ class EmployeeController < ApplicationController
     redirect to "/company/#{@company.slug}"
   end
 
+  get '/employee/:slug' do
+  end 
+
+
+
 end
