@@ -1,1 +1,18 @@
-TOOL!
+Product: <%=@tool.product%><br>
+Notes: <%=@tool.notes%><br>
+Availabile? <%=@tool.available%><br>
+
+
+<h1>EDIT INFORMATION</h1>
+
+<form action="/tools" method="post">
+  <label for="tool_product">Product: <input id="tool_product" type="text" name="tool[product]" value="<%=@tool.product%>"></label><br>
+  <label for="tool_notes">Notes: <input id="tool_notes" type="text" name="tool[notes]" value="<%=@tool.notes%>"></label><br>
+  Is it available? <input type="checkbox" name="available" value="yes">Yes <input type="checkbox" name="not_available" value="no">No<br>
+  If not available, who checked it out?
+
+  <!--ADD COMPANY EMPLOYEES LIST HERE - loop through and make each employee a checkbox -->
+
+  <input type="text" name="checked_out" value=""><br>
+  <input type="submit" name="submit" value="Edit Tool">
+</form>

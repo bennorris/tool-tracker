@@ -11,7 +11,7 @@ class ToolController < ApplicationController
   end
 
   get '/tools/:slug' do
-    
+    @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
     erb :'tools/show_individual'
   end
 
