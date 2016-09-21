@@ -101,8 +101,20 @@ class ToolController < ApplicationController
   end
 
   post '/tools/edited' do
+    @tool = Tool.find_by(params[:tool_id])
+    @employee = Employee.find_by_id(session[:employee_id])
 
+    if params[:not_available] #checking out the tool
+      @tool.available = false
+      @employee.tools << @tool
+    elsif params[:available] && @tool.employees.include?(@employee) #returning the tool
+      @tool.available = true
+      @employee.tools.delete(@tool)
+    end
 
+    @tool.update(params[:tool])
+
+    redirect to "/employee/#{@employee.slug}"
   end
 
 
