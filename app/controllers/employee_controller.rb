@@ -12,12 +12,7 @@ class EmployeeController < ApplicationController
 
   get '/employees/:slug' do
     @employee = Employee.find_by(first_name: params[:slug].split('-')[0], last_name: params[:slug].split('-')[1])
-
-    Company.all.each do |company|
-      if company.employees.include?(@employee)
-        @company = company
-        end
-      end
+    @company = Company.find_by_id(session[:user_id])
 
     erb :'employee/show'
   end
@@ -27,8 +22,8 @@ class EmployeeController < ApplicationController
     @employee.update(params[:employee])
     @employee.save
 
-    @company = Company.find_by(name: params[:company])
-    
+    @company = Company.find_by_id(session[:user_id])
+
     redirect to "/company/#{@company.slug}"
   end
 
