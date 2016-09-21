@@ -17,6 +17,7 @@ class CompanyController < ApplicationController
     end
     @company = Company.new(params[:company])
     @company.save
+    session[:user_id] = @company.id
 
     redirect to "/company/#{@company.slug}"
   end

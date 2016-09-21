@@ -75,6 +75,7 @@ font-family: Helvetica;
 
 h2 {
   font-family: Helvetica;
+  clear: both;
 }
 
 table {
@@ -155,4 +156,6 @@ background: #EEEEEE;
 
 #black_h1 {
   color: black;
+  text-align: center;
+  
 }

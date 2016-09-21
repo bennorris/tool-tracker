@@ -15,7 +15,6 @@
     <div class="tool_list">
       <div class="table_title">
         <h2>CHECKED OUT TOOLS:
-    <%if @company.tools.all.size >= 1%>
       </div>
       <table id="checked_out_tools">
         <thead>
@@ -38,15 +37,12 @@
 
               <%end%>
         <%end%>
-        <%else%>
-          <h1 id="black_h1">You don't have any checked out tools yet.</h1>
-          <%end%>
+
           </tr>
         </tbody>
       </table>
       </h2>
     </div>
-
 
 <!--AVAILABLE TOOLS TABLE -->
 
@@ -54,7 +50,6 @@
         <div class="table_title">
           <h2 class="tools_heading">AVAILABLE TOOLS:
           </div>
-          <%if @company.tools.all.size >= 1%>
           <table id="available_tools">
             <thead>
               <tr>
@@ -75,13 +70,13 @@
               </tr>
             </tbody>
           </table>
-          <%else%>
-            <h1 id="black_h1">You don't have any available tools yet.</h1>
-            <%end%>
+
           </h2>
       </div>
 
 <!--CREATE NEW TOOL -->
+
+
 <div class="center_row">
     <div class="add_equipment">
       <h1 id="add_tool">Add Tool:</h1>
@@ -111,9 +106,7 @@
 <div class="bottom-row">
 <!--ALL TOOLS -->
 
-        <%if @company.tools.size < 1%>
-          <h2>It looks like you haven't added any equipment yet.<h2>
-        <%else%>
+
           <div class="tool_list">
             <div class="table_title">
             <h2 class="tools_heading">ALL TOOLS:</h2>
@@ -144,13 +137,10 @@
               </tbody>
             </table>
           </div>
-          <%end%>
+
 
 <!--ALL EMPLOYEES-->
 
-          <%if @company.employees.size < 1%>
-            <h2>It looks like you haven't added any employees yet.</h2>
-          <%else%>
             <div class="tool_list">
               <div class="table_title">
             <h2 class="tools_heading">ALL EMPLOYEES:</h2>
@@ -177,7 +167,7 @@
                 </tbody>
               </table>
             </div>
-            <%end%>
+  
 </div>
 
     <h3><a href="/logout">log out</a></h3>

@@ -12,6 +12,7 @@ class ToolController < ApplicationController
 
   get '/tools/:slug' do
     @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
+    @company = Company.find_by_id(session[:user_id])
     erb :'tools/show_individual'
   end
 
