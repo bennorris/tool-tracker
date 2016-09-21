@@ -1,4 +1,5 @@
 class Employee < ActiveRecord::Base
+  has_secure_password
   belongs_to :company
   has_many :employee_tools
   has_many :tools, through: :employee_tools
@@ -16,5 +17,5 @@ class Employee < ActiveRecord::Base
       employee.delete
     end
   end
-  
+
 end

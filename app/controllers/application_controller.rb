@@ -10,31 +10,62 @@ configure do
 end
 
 helpers do
-   def logged_in?
-     if session[:user_id]
+   def company_logged_in?
+     if session[:company_id]
        true
      else
        false
      end
    end
+
+   def employee_logged_in?
+     if session[:employee_id]
+       true
+     else
+       false
+     end
+   end
+
  end
 
 get '/' do
-  erb :'home/index'
+  @company = Company.find_by_id(session[:company_id])   #need better solution here in case ID matches both
+  @employee = Employee.find_by_id(session[:employee_id])
+
+  if company_logged_in?
+      redirect to "/company/#{@company.slug}"
+  elsif employee_logged_in?
+      redirect to "/employee/#{@employee.slug}"
+  else
+    erb :'home/index'
+  end
 end
 
 get '/login' do
-  erb :'home/login'
+  @company = Company.find_by_id(session[:company_id])
+  @employee = Employee.find_by_id(session[:employee_id])
+
+  if company_logged_in?
+      redirect to "/company/#{@company.slug}"
+  elsif employee_logged_in?
+      redirect to "/employee/#{@employee.slug}"
+  else
+    erb :'home/login'
+  end
 end
 
 get '/signup' do
-  erb :'home/signup'
-end
+  @company = Company.find_by_id(session[:company_id])
+  @employee = Employee.find_by_id(session[:employee_id])
 
-get '/employee/signup' do
-  erb :'employee/signup'
+  if company_logged_in?
+      redirect to "/company/#{@company.slug}"
+  elsif employee_logged_in?
+      redirect to "/employee/#{@employee.slug}"
+  else
+    erb :'home/signup'
+  end
 end
-
 
 get '/logout' do
   session.clear
