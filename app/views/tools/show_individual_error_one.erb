@@ -1,3 +1,5 @@
+<h1>ERROR: The tool cannot be available and assigned to an employee at the same time.</h1>
+<h2>If you select "Yes" to "Is it available?", please uncheck all employees.</h2>
 
 Product: <%=@tool.product%><br>
 Notes: <%=@tool.notes%><br>
@@ -14,11 +16,11 @@ Availabile?
 <form action="/tools" method="post">
   <label for="tool_product">Product: <input id="tool_product" type="text" name="tool[product]" value="<%=@tool.product%>"></label><br>
   <label for="tool_notes">Notes: <input id="tool_notes" type="text" name="tool[notes]" value="<%=@tool.notes%>"></label><br>
-  Is it available? <input type="checkbox" name="available" value="yes" <%='checked' if @tool.available%> >Yes <input type="checkbox" name="not_available" value="no" <%='checked' if !@tool.available%> >No<br>
+  Is it available? <input type="checkbox" name="available" value="yes">Yes <input type="checkbox" name="not_available" value="no">No<br>
   If not available, who checked it out?<br>
   <%if @company.employees.all.empty? == false %>
       <%@company.employees.all.each do |employee|%>
-          <input type="checkbox" name="employee_name" value="<%=employee.name%>" <%='checked' if employee.tools.include?(@tool)%> ><%=employee.name%><br>
+          <input type="checkbox" name="employee_name" value="<%=employee.name%>"><%=employee.name%><br>
           <%end%>
         <%end%>
 
