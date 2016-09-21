@@ -1,1 +1,36 @@
-<h1>THIS WORKS!</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Hi, <%=@employee.first_name%></title>
+  </head>
+  <body>
+    <h1>Hi, <%=@employee.first_name%>!</h1>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Notes</th>
+          <th>Available?</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <%@company.tools.each do |tool|%>
+          <td><%=tool.product%></td>
+          <td><%=tool.notes%></td>
+          <%if tool.available%>
+              <td>Yes</td>
+          <%else%>
+            <td>No</td>
+            <%end%>
+            <td><a href="/tools/<%=tool.slug%>">edit</a>
+            <%end%>
+
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

@@ -67,6 +67,22 @@ get '/signup' do
   end
 end
 
+post '/home' do
+  @employee = Employee.find_by(contact_info: params[:user][:username])
+  @company = Company.find_by(email: params[:user][:username])
+
+
+  if @employee && @employee.authenticate(params[:user][:password])
+      session[:employee_id] = @employee.id
+      redirect to "/employee/#{@employee.slug}"
+  elsif @company && @company.authenticate(params[:user][:password])
+      session[:company_id] = @company.id
+      redirect to "/company/#{@company.slug}"
+  else
+    redirect to '/login'
+  end
+end
+
 get '/logout' do
   session.clear
   redirect to '/login'

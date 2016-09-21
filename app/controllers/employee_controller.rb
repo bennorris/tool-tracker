@@ -5,6 +5,7 @@ class EmployeeController < ApplicationController
   end
 
   post '/employees/new' do   #admin side
+    params[:employee][:password] = "placeholder"
     @employee = Employee.new(params[:employee])
     @company = Company.find_by_id(session[:company_id])
     @company.employees << @employee
@@ -15,10 +16,17 @@ class EmployeeController < ApplicationController
   end
 
   get '/employee/:slug' do #employee side
-    erb :'employee/show_profile'
+    @employee = Employee.find_by_id(session[:employee_id])
+    @company = Company.find_by_id(@employee.company_id)
+    
+    if employee_logged_in?
+      erb :'employee/show_profile'
+    else
+      redirect to '/login'
+    end
   end
 
-  post '/employee/new' do #employee side
+  post '/employee/new' do #employee side signup
     @company = Company.find_by(name: params[:company_name])
 
     if @company
