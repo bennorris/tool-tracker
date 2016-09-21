@@ -18,7 +18,7 @@ helpers do
      end
    end
  end
- 
+
 get '/' do
   erb :'home/index'
 end
@@ -35,9 +35,6 @@ get '/employee/signup' do
   erb :'employee/signup'
 end
 
-post '/home' do
-
-end
 
 get '/logout' do
   session.clear

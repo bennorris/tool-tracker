@@ -5,9 +5,13 @@ class CompanyController < ApplicationController
   end
 
   get '/company/:slug' do
-    if logged_in?
-    @company = Company.find_by(name: params[:slug].gsub("-", " "))
-    erb :'company/show'
+
+    @company = Company.find_by_id(session[:user_id])
+
+    if logged_in? && @company.slug == params[:slug]
+      erb :'company/show'
+    elsif logged_in?
+      redirect to "/company/#{@company.slug}"
     else
       redirect to '/login'
     end
