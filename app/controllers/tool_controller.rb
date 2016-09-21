@@ -11,40 +11,52 @@ class ToolController < ApplicationController
   end
 
   get '/tools/:slug' do
-    if logged_in?
-      @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
-      @company = Company.find_by_id(session[:user_id])
+    @company = Company.find_by_id(session[:user_id])
+    @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
+
+    if logged_in? && @tool.company_id == @company.id
       erb :'tools/show_individual'
+    elsif logged_in?
+      redirect to "/company/#{@company.slug}"
     else
       redirect to '/login'
     end
   end
 
   get '/tools/:slug/error-1' do
-    if logged_in?
-      @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
-      @company = Company.find_by_id(session[:user_id])
+    @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
+    @company = Company.find_by_id(session[:user_id])
+
+    if logged_in? && @tool.company_id == @company.id
       erb :'tools/show_individual_error_one'
+    elsif logged_in?
+      redirect to "/company/#{@company.slug}"
     else
       redirect to '/login'
     end
   end
 
   get '/tools/:slug/error-2' do
-    if logged_in?
-      @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
-      @company = Company.find_by_id(session[:user_id])
+    @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
+    @company = Company.find_by_id(session[:user_id])
+
+    if logged_in? && @tool.company_id == @company.id
       erb :'tools/show_individual_error_two'
+    elsif logged_in?
+      redirect to "/company/#{@company.slug}"
     else
       redirect to '/login'
     end
   end
 
   get '/tools/:slug/error-3' do
-    if logged_in?
-      @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
-      @company = Company.find_by_id(session[:user_id])
+    @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
+    @company = Company.find_by_id(session[:user_id])
+
+    if logged_in? && @tool.company_id == @company.id
       erb :'tools/show_individual_error_three'
+    elsif logged_in?
+      redirect to "/company/#{@company.slug}"
     else
       redirect to '/login'
     end
