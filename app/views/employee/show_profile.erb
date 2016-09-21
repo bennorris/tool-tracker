@@ -13,9 +13,9 @@
     <h1>Hi, <%=@employee.first_name%>!</h1>
     <hr>
 
-<h2><%=@company.name%> Tools:</h2>
-<br></br>
-    <table>
+<h2 id="co_tools"><%=@company.name%> Tools:</h2>
+<br>
+    <table id="company_tools_table">
       <thead>
         <tr>
           <th>Product</th>
@@ -41,9 +41,36 @@
       </tbody>
     </table>
 
+    <h2 id="checked_out_heading">Your Checked Out Tools:</h2>
+    <br>
+        <table id="checked_out_tools">
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Notes</th>
+              <th>Edit</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <%if !@employee.tools.empty?%>
+                <%@employee.tools.each do |tool|%>
+                <td><%=tool.product%></td>
+                <td><%=tool.notes%></td>
+                <td><a href="/tools/<%=tool.slug%>">edit</a>
+                <%end%>
+              <%else%>
+              <td>None</td>
+              <td>None</td>
+              <td>N/A</td>
+              <%end%>
+            </tr>
+          </tbody>
+        </table>
+
 <h2 id="info_heading">Edit Your Information:</h2>
 
-<br></br>
+<br>
 <form action="/employee/edited" method="post">
   <label for="employee_firstname">First Name: <input id="employee_firstname" type="text" name="employee[first_name]" value="<%=@employee.first_name%>"></label><br>
   <label for="employee_lastname">Last Name: <input id="employee_lastname" type="text" name="employee[last_name]" value="<%=@employee.last_name%>"></label><br>
@@ -51,7 +78,9 @@
   <br></br>
   <input type="submit" name="submit" value="Edit Info">
 </form>
-
+<br>
+<br>
+<br>
 
   </body>
 </html>

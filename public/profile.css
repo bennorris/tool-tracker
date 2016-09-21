@@ -1,5 +1,5 @@
 html {
-  background: url("./assets/tree_bark.png");
+  background: url("./assets/ps_neutral.png");
   font-family: Helvetica;
 }
 
@@ -74,10 +74,11 @@ a {
 label, input {
   font-family: Helvetica;
   font-size: 1.5em;
-  color: black;
+  color: #2E7D32;
 }
 
 #info_heading {
+  color: #2E7D32;
 margin-top: 5%;
 }
 
@@ -90,4 +91,44 @@ margin-top: 5%;
   font-size: 2em;
   float: right;
   margin-right: 5%;
+}
+
+#co_tools {
+  color: #D84315;
+}
+
+#company_tools_table {
+  color: #D84315;
+}
+
+#company_tools_table td {
+  color: #D84315;
+  border: 5px solid #D84315;
+
+}
+
+#checked_out_heading {
+  color: #01579B
+}
+
+#company_tools_table th {
+  color: #D84315;
+  border: 5px solid #D84315;
+
+}
+
+#checked_out_tools {
+  color: #01579B;
+}
+
+#checked_out_tools td {
+  color: #01579B;
+  border: 5px solid #01579B;
+
+}
+
+#checked_out_tools th {
+  color: #01579B;
+  border: 5px solid #01579B;
+
 }
