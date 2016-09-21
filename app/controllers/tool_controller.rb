@@ -11,27 +11,43 @@ class ToolController < ApplicationController
   end
 
   get '/tools/:slug' do
-    @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
-    @company = Company.find_by_id(session[:user_id])
-    erb :'tools/show_individual'
+    if logged_in?
+      @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
+      @company = Company.find_by_id(session[:user_id])
+      erb :'tools/show_individual'
+    else
+      redirect to '/login'
+    end
   end
 
   get '/tools/:slug/error-1' do
-    @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
-    @company = Company.find_by_id(session[:user_id])
-    erb :'tools/show_individual_error_one'
+    if logged_in?
+      @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
+      @company = Company.find_by_id(session[:user_id])
+      erb :'tools/show_individual_error_one'
+    else
+      redirect to '/login'
+    end
   end
 
   get '/tools/:slug/error-2' do
-    @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
-    @company = Company.find_by_id(session[:user_id])
-    erb :'tools/show_individual_error_two'
+    if logged_in?
+      @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
+      @company = Company.find_by_id(session[:user_id])
+      erb :'tools/show_individual_error_two'
+    else
+      redirect to '/login'
+    end
   end
 
   get '/tools/:slug/error-3' do
-    @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
-    @company = Company.find_by_id(session[:user_id])
-    erb :'tools/show_individual_error_three'
+    if logged_in?
+      @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
+      @company = Company.find_by_id(session[:user_id])
+      erb :'tools/show_individual_error_three'
+    else
+      redirect to '/login'
+    end
   end
 
   post '/tools' do

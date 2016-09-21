@@ -9,6 +9,16 @@ configure do
   set :session_secret, "thesecretofsecrets"
 end
 
+helpers do
+   def logged_in?
+     if session[:user_id]
+       true
+     else
+       false
+     end
+   end
+ end
+ 
 get '/' do
   erb :'home/index'
 end
