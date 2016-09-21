@@ -1,11 +1,39 @@
-<h1><%=@employee.name%></h1>
-<h1><%=@employee.contact_info%></h1>
-<h1>
-<%if @employee.tools%>
-<%@employee.tools.all.each do |tool|%>
-        <%=tool.manufacturer%>
-        <%end%></h1>
-        <%end%>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="<%=url('/tool_show.css')%>" media="screen" title="no title" charset="utf-8">
+    <title>Edit <%=@employee.name%></title>
+  </head>
+  <body>
+
+<table>
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Contact Info</th>
+        <th>Tools</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%=@employee.first_name%></td>
+        <td><%=@employee.last_name%></td>
+        <td><%=@employee.contact_info%></td>
+        <td> <%if @employee.tools%>
+                <%@employee.tools.each do |tool|%>
+                        <%=tool.product%>,
+                        <%end%>
+              <%else%>
+                  None
+              <%end%>
+          </td>
+      </tr>
+    </tbody>
+</table>
+
+
 
 <h1>EDIT INFORMATION</h1>
 
@@ -17,3 +45,9 @@
   <input type="hidden" name="id" value="<%=@employee.id%>">
   <input type="submit" name="submit" value="Edit Employee">
 </form>
+
+
+<h1><a href="/company/<%=@company.slug">home</a></h1>
+
+</body>
+</html>
