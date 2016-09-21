@@ -32,8 +32,12 @@
             <tr>
               <td><%=tool.product%></td>
               <td><%=tool.notes%></td>
+              <%if @employee%>
               <td><a href="/employees/<%="#{@employee.slug}"%>"><%=@employee.name%></a></td>
-              <td><a href="/tool/<%=tool.slug%>">Edit</a></td>
+              <%else%>
+              <td>NA</td>
+              <%end%>
+              <td><a href="/tools/<%=tool.slug%>">Edit</a></td>
 
               <%end%>
         <%end%>
@@ -167,7 +171,7 @@
                 </tbody>
               </table>
             </div>
-  
+
 </div>
 
     <h3><a href="/logout">log out</a></h3>

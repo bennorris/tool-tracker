@@ -21,7 +21,7 @@ Availabile?
           <input type="checkbox" name="employee_name" value="<%=employee.name%>"><%=employee.name%><br>
           <%end%>
         <%end%>
-  <!--ADD COMPANY EMPLOYEES LIST HERE - loop through and make each employee a checkbox -->
 
   <input type="submit" name="submit" value="Edit Tool">
+  <input type="hidden" name="tool_id" value="<%=@tool.id%>">
 </form>
