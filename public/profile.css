@@ -1,0 +1,68 @@
+html {
+  background: url("./assets/tree_bark.png");
+}
+
+form {
+  margin-top: 5%%;
+}
+
+label {
+  font-family: Helvetica;
+  font-size: 2em;
+  color: black;
+}
+
+input {
+  font-family: Helvetica;
+  font-size: 0.75em;
+}
+
+table {
+  border-collapse: collapse;
+  text-align: center;
+  table-layout: auto;
+  width: 50%;
+}
+
+th {
+  font-family: Helvetica;
+  font-size: 2em;
+  color: black;
+  padding-left: 3%;
+  padding-right: 3%;
+  border: 5px solid black;
+  text-align: center;
+}
+
+td {
+  font-family: Helvetica;
+  font-size: 1.5em;
+  color: black;
+  border: 5px solid black;
+}
+
+h1 {
+  font-family: Helvetica;
+  color: black;
+  font-size: 3em;
+  margin-top: 5%;
+}
+
+h2 {
+  font-size: 1.9em;
+  font-family: Helvetica;
+  margin-bottom: 5%;
+}
+
+input[type='checkbox'] {
+  font-size: 2.5em;
+}
+
+.edit_info {
+  margin-left: 5%;
+}
+
+
+a {
+  color: #FFAB91
+}
