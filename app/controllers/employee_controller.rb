@@ -18,7 +18,7 @@ class EmployeeController < ApplicationController
   get '/employee/:slug' do #employee side
     @employee = Employee.find_by_id(session[:employee_id])
     @company = Company.find_by_id(@employee.company_id)
-    
+
     if employee_logged_in?
       erb :'employee/show_profile'
     else
@@ -70,6 +70,16 @@ class EmployeeController < ApplicationController
     @company = Company.find_by_id(session[:company_id])
 
     redirect to "/company/#{@company.slug}"
+  end
+
+  post '/employee/edited' do
+    @employee = Employee.find_by_id(session[:employee_id])
+    @employee.first_name = params[:employee][:first_name]
+    @employee.last_name = params[:employee][:last_name]
+    @employee.contact_info = params[:employee][:contact_info]
+    @employee.save
+
+    redirect to "/employee/#{@employee.slug}"
   end
 
 

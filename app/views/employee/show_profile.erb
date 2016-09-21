@@ -6,8 +6,15 @@
     <title>Hi, <%=@employee.first_name%></title>
   </head>
   <body>
-    <h1>Hi, <%=@employee.first_name%>!</h1>
+    <div class="header">
+      <a href="/logout">logout</a>
+    </div>
 
+    <h1>Hi, <%=@employee.first_name%>!</h1>
+    <hr>
+
+<h2><%=@company.name%> Tools:</h2>
+<br></br>
     <table>
       <thead>
         <tr>
@@ -33,5 +40,18 @@
         </tr>
       </tbody>
     </table>
+
+<h2 id="info_heading">Edit Your Information:</h2>
+
+<br></br>
+<form action="/employee/edited" method="post">
+  <label for="employee_firstname">First Name: <input id="employee_firstname" type="text" name="employee[first_name]" value="<%=@employee.first_name%>"></label><br>
+  <label for="employee_lastname">Last Name: <input id="employee_lastname" type="text" name="employee[last_name]" value="<%=@employee.last_name%>"></label><br>
+  <label for="contact">Email: <input id="contact" type="text" name="employee[contact_info]" value="<%=@employee.contact_info%>"></label><br>
+  <br></br>
+  <input type="submit" name="submit" value="Edit Info">
+</form>
+
+
   </body>
 </html>
