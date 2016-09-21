@@ -11,14 +11,16 @@ class EmployeeController < ApplicationController
   end
 
   get '/employees/:slug' do
-    if logged_in?
-      @employee = Employee.find_by(first_name: params[:slug].split('-')[0], last_name: params[:slug].split('-')[1])
-      @company = Company.find_by_id(session[:user_id])
+    @employee = Employee.find_by(first_name: params[:slug].split('-')[0], last_name: params[:slug].split('-')[1])
+    @company = Company.find_by_id(session[:user_id])
 
+    if logged_in? && @company.employees.include?(@employee)
       erb :'employee/show'
+    elsif logged_in?
+      redirect to "/company/#{@company.slug}"
     else
       redirect to '/login'
-    end  
+    end
   end
 
   post '/employees' do
