@@ -36,12 +36,21 @@
             <tr>
               <td><%=tool.product%></td>
               <td><%=tool.notes%></td>
-              <%if @employee%>
-              <td><a href="/employees/<%="#{@employee.slug}"%>"><%=@employee.name%></a></td>
+              <%if !tool.employees.empty?%>
+                <%x = tool.employees.size%>
+                <%y = 1%>
+                  <td><%tool.employees.each do |employee|%>
+                    <%if y < x%>
+                      <a href="/employees/<%="#{employee.slug}"%>"><%=employee.name%>, </a>
+                      <%y+=1%>
+                    <%else%>
+                      <a href="/employees/<%="#{employee.slug}"%>"><%=employee.name%></a>
+                    <%end%>
+                <%end%></td>
               <%else%>
               <td>NA</td>
               <%end%>
-              <td><a href="/tools/<%=tool.slug%>">Edit</a></td>
+              <td><a href="/tools/<%=tool.slug%>">edit</a></td>
 
               <%end%>
         <%end%>

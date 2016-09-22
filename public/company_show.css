@@ -167,7 +167,13 @@ background: #EEEEEE;
 }
 
 a {
-  color: #9E9E9E;
+  color: #FFF59D;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  color: #FF5722;
 }
 
 .logout {

@@ -41,6 +41,8 @@ class ToolController < ApplicationController
     end
   end
 
+
+
   get '/tools/:slug/error-2' do
     @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
     @company = Company.find_by_id(session[:company_id])
@@ -67,21 +69,36 @@ class ToolController < ApplicationController
     end
   end
 
+  get '/tools/:slug/error-6' do
+    @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
+    @company = Company.find_by_id(session[:company_id])
+
+    if company_logged_in? && @tool.company_id == @company.id
+      erb :'tools/show_individual_error_six'
+    elsif company_logged_in?
+      redirect to "/company/#{@company.slug}"
+    else
+      redirect to '/login'
+    end
+  end
+
   post '/tools' do
 
     @tool = Tool.find_by_id(params[:tool_id])
     @company = Company.find_by_id(session[:company_id])
-    binding.pry
 
-    if params[:available] && !params[:employee_name]
+
+    if params[:available] && !params[:employee] && !params[:not_available]
       @tool.available = true
       @tool.employees.clear
       @tool.update(params[:tool])
     elsif !params[:available] && !params[:not_available] #no answer to available
       redirect to "/tools/#{@tool.slug}/error-3"
-    elsif params[:available] && params[:employee_name] #available but assigned to employee
+    elsif params[:available] && params[:not_available] #yes and no to available
+      redirect to "/tools/#{@tool.slug}/error-6"
+    elsif params[:available] && params[:employee] #available but assigned to employee
         redirect to "/tools/#{@tool.slug}/error-1"
-    elsif !params[:not_available].empty? && !params[:employee_name] #selected not avail but didn't assign employee
+    elsif !params[:not_available].empty? && !params[:employee] #selected not avail but didn't assign employee
         redirect to "/tools/#{@tool.slug}/error-2"
     elsif params[:not_available]
       @tool.employees.clear
@@ -117,7 +134,23 @@ class ToolController < ApplicationController
       @tool.update(params[:tool])
       redirect to "/employee/#{@employee.slug}"
     end
+  end
 
+  post '/tools/admin-edited' do
+    @employee = Employee.find_by_id(params[:employee])
+    @company = Company.find_by_id(session[:company_id])
+
+    params[:tool].each do |key, value|
+      @tool = Tool.find_by_id(value)
+      @employee.tools.delete(@tool)
+
+      if @tool.employees.empty?
+          @tool.available = true
+          @tool.save
+      end
+    end
+
+    redirect to "/company/#{@company.slug}"
   end
 
 

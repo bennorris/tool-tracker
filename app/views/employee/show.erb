@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,7 +22,7 @@
         <td><%=@employee.first_name%></td>
         <td><%=@employee.last_name%></td>
         <td><%=@employee.contact_info%></td>
-        <td> <%if @employee.tools%>
+        <td> <%if @employee.tools.size > 0%>
                 <%@employee.tools.each do |tool|%>
                         <%=tool.product%>,
                         <%end%>
@@ -41,11 +42,24 @@
   <label for="first_name">First Name: <input id="first_name" type="text" name="employee[first_name]" value="<%=@employee.first_name%>"></label><br>
   <label for="last_name">Last Name: <input id="last_name" type="text" name="employee[last_name]" value="<%=@employee.last_name%>"></label><br>
   <label for="contact_info">Contact: <input id="contact_info" type="text" name="employee[contact_info]" value="<%=@employee.contact_info%>"></label><br>
+
   <input type="hidden" name="company" value="<%=@company.name%>">
   <input type="hidden" name="id" value="<%=@employee.id%>">
   <input type="submit" name="submit" value="Edit Employee">
 </form>
 
+<h1>EDIT CHECKED OUT TOOLS</h1>
+
+<form action="/tools/admin-edited" method="post">
+
+<h2 id="tool_removal">Select the tools you'd like to remove from <%=@employee.first_name%>'s List:</h2>
+<%@employee.tools.each.with_index do |tool, index|%>
+<input type="checkbox" name="tool[<%=index%>]" value="<%=tool.id%>"><label><%=tool.product%></label></input><br>
+<%end%>
+<br></br>
+<input type="hidden" name="employee" value="<%=@employee.id%>">
+<input type="submit" name="edit_checkedout" value="Submit">
+</form>
 
 <h1><a href="/company/<%=@company.slug">home</a></h1>
 
