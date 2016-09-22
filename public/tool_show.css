@@ -71,6 +71,7 @@ input[type='checkbox'] {
   text-align: center;
 }
 
-a {
+h1 a {
+  margin-left: 5%;
   color: #FFAB91
 }

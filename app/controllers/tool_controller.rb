@@ -104,17 +104,22 @@ class ToolController < ApplicationController
     @tool = Tool.find_by(params[:tool_id])
     @employee = Employee.find_by_id(session[:employee_id])
 
-    if params[:not_available] #checking out the tool
+    if params[:not_available] && params[:available]
+      erb :'tools/tools_error_five'
+    elsif params[:not_available] && @employee.tools.include?(@tool)
+      erb :'tools/tools_error_four'
+    elsif params[:not_available] && !@employee.tools.include?(@tool)#checking out the tool
       @tool.available = false
       @employee.tools << @tool
+      @tool.update(params[:tool])
+      redirect to "/employee/#{@employee.slug}"
     elsif params[:available] && @tool.employees.include?(@employee) #returning the tool
       @tool.available = true
       @employee.tools.delete(@tool)
+      @tool.update(params[:tool])
+      redirect to "/employee/#{@employee.slug}"
     end
 
-    @tool.update(params[:tool])
-
-    redirect to "/employee/#{@employee.slug}"
   end
 
 

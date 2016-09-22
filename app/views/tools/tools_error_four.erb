@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="<%=url('/tool_show.css')%>" media="screen" title="no title" charset="utf-8">
+    <title><%@tool.product%></title>
+  </head>
+  <body>
+
+    <h1>Oops, you tried to check out a product that you've already checked out.</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Product</th>
+      <th>Notes</th>
+      <th>Available?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%=@tool.product%></td>
+      <td><%=@tool.notes%></td>
+      <%if @tool.available%>
+          <td>Yes</td>
+      <%else%>
+        <td>No</td>
+        <%end%>
+    </tr>
+  </tbody>
+</table>
+
+<div class="edit_info">
+
+<h1>EDIT INFORMATION</h1>
+
+<form action="/tools/edited" method="post">
+  <label for="tool_product">Product: <input id="tool_product" type="text" name="tool[product]" value="<%=@tool.product%>"></label><br>
+  <label for="tool_notes">Notes: <input id="tool_notes" type="text" name="tool[notes]" value="<%=@tool.notes%>"></label><br>
+  <br></br>
+  <label>Are you checking out this tool?</label> <input type="checkbox" name="not_available" value="yes"><label> Yes  </label>
+  <br></br>
+  <label>Are you returning this tool?</label> <input type="checkbox" name="available" value="yes"><label> Yes  </label>
+  <br></br>
+  <input type="submit" name="submit" value="Edit Tool">
+  <input type="hidden" name="tool_id" value="<%=@tool.id%>">
+</form>
+</div>
+
+<h1><a href="/employee/<%=@employee.slug">home</a></h1>
+
+</body>
+</html>

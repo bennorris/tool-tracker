@@ -1,5 +1,9 @@
 html {
-  background: url("./assets/ps_neutral.png");
+  background: url("./assets/pencils_1.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   font-family: Helvetica;
 }
 
@@ -31,7 +35,7 @@ th {
   color: black;
   padding-left: 3%;
   padding-right: 3%;
-  border: 5px solid black;
+  border: 5px solid white;
   text-align: center;
 }
 
@@ -39,12 +43,12 @@ td {
   font-family: Helvetica;
   font-size: 1.5em;
   color: black;
-  border: 5px solid black;
+  border: 5px solid white;
 }
 
 h1 {
   font-family: Helvetica;
-  color: black;
+  color: white;
   font-size: 3em;
   margin-top: 3%;
 }
@@ -52,10 +56,12 @@ h1 {
 h2 {
   font-size: 2.3em;
   font-family: Helvetica;
+  color: white;
 }
 
 h3 {
   font-size: 1.8em;
+  color: white;
 }
 
 input[type='checkbox'] {
@@ -74,11 +80,11 @@ a {
 label, input {
   font-family: Helvetica;
   font-size: 1.5em;
-  color: #2E7D32;
+
 }
 
 #info_heading {
-  color: #2E7D32;
+  color: white;
 margin-top: 5%;
 }
 
@@ -94,41 +100,54 @@ margin-top: 5%;
 }
 
 #co_tools {
-  color: #D84315;
+  color: white;
 }
 
 #company_tools_table {
-  color: #D84315;
+  color: white;
+  background: url("./assets/hexabump.png");
+
 }
 
 #company_tools_table td {
-  color: #D84315;
-  border: 5px solid #D84315;
+  color: white;
+  border: 5px solid white;
+  background: url("./assets/hexabump.png");
+
 
 }
 
 #checked_out_heading {
-  color: #01579B
+  color: white;
 }
 
 #company_tools_table th {
-  color: #D84315;
-  border: 5px solid #D84315;
+  color: white;
+  border: 5px solid white;
+  background: url("./assets/hexabump.png");
 
 }
 
 #checked_out_tools {
-  color: #01579B;
+  color: white;
+  background: url("./assets/hexabump.png");
+
 }
 
 #checked_out_tools td {
-  color: #01579B;
-  border: 5px solid #01579B;
+  color: white;
+  border: 5px solid white;
+  background: url("./assets/hexabump.png");
+
 
 }
 
 #checked_out_tools th {
-  color: #01579B;
-  border: 5px solid #01579B;
+  color: white;
+  border: 5px solid white;
+  background: url("./assets/hexabump.png");
+}
 
+label {
+color:white;
 }
