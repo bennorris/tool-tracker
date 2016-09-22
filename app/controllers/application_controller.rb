@@ -79,7 +79,17 @@ post '/home' do
       session[:company_id] = @company.id
       redirect to "/company/#{@company.slug}"
   else
-    redirect to '/login'
+    redirect to '/login/failed'
+  end
+end
+
+get '/login/failed' do
+  if company_logged_in?
+      redirect to "/company/#{@company.slug}"
+  elsif employee_logged_in?
+      redirect to "/employee/#{@employee.slug}"
+  else
+    erb :'home/login_failed'
   end
 end
 
