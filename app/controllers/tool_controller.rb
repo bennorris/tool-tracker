@@ -68,33 +68,31 @@ class ToolController < ApplicationController
   end
 
   post '/tools' do
+
     @tool = Tool.find_by_id(params[:tool_id])
-    @tool.update(params[:tool])
     @company = Company.find_by_id(session[:company_id])
+    binding.pry
 
     if params[:available] && !params[:employee_name]
       @tool.available = true
-      Employee.all.each do |employee|
-        if employee.tools.include?(@tool)
-            @employee = employee
-          end
-      end
-      @employee.tools.delete(@tool)
-      @employee.save
-      @tool.save
-    elsif !params[:available] && !params[:not_available]
+      @tool.employees.clear
+      @tool.update(params[:tool])
+    elsif !params[:available] && !params[:not_available] #no answer to available
       redirect to "/tools/#{@tool.slug}/error-3"
-    elsif params[:available] && params[:employee_name]
+    elsif params[:available] && params[:employee_name] #available but assigned to employee
         redirect to "/tools/#{@tool.slug}/error-1"
-    elsif !params[:not_available].empty? && !params[:employee_name]
+    elsif !params[:not_available].empty? && !params[:employee_name] #selected not avail but didn't assign employee
         redirect to "/tools/#{@tool.slug}/error-2"
     elsif params[:not_available]
-
+      @tool.employees.clear
       @tool.available = false
-      @employee = Employee.find_by(first_name: params[:employee_name].split(" ")[0], last_name: params[:employee_name].split(" ")[1])
-      @employee.tools << @tool
+      @tool.update(params[:tool])
+
+      params[:employee].each do |key, value|
+        @employee = Employee.find_by(first_name: value.split(" ")[0], last_name: value.split(" ")[1])
+        @tool.employees << @employee
+      end
       @tool.save
-      @employee.save
     end
 
     redirect to "/company/#{@company.slug}"

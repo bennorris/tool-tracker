@@ -29,26 +29,27 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
           <%@company.tools.each do |tool|%>
+          <tr>
           <td><%=tool.product%></td>
           <td><%=tool.notes%></td>
+          <td>
           <%if tool.available%>
-              <td>Yes</td>
+              Yes
           <%else%>
-            <td>No</td>
+              No
             <%end%>
+          </td>
+          <td>
           <% if tool.available == false%>
             <%tool.employees.each do |employee|%>
-              <td><%=employee.name %></td>
+              <%=employee.name %>
               <%end%>
             <%else%>
-            <td>N/A</td>
-            <%end%>
-
-
+              N/A
+            <%end%></td>
             <td><a href="/tools/<%=tool.slug%>">edit</a>
-            <%end%>
+            <%end%></tr>
 
         </tr>
       </tbody>
