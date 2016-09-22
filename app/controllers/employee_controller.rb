@@ -11,14 +11,12 @@ class EmployeeController < ApplicationController
     @company.employees << @employee
     @company.save
     @employee.save
-
     redirect to "/company/#{@company.slug}"
   end
 
   get '/employee/:slug' do #employee side
     @employee = Employee.find_by_id(session[:employee_id])
     @company = Company.find_by_id(@employee.company_id)
-
     if employee_logged_in?
       erb :'employee/show_profile'
     else
@@ -29,25 +27,33 @@ class EmployeeController < ApplicationController
   post '/employee/new' do #employee side signup
     @company = Company.find_by(name: params[:company_name])
 
-    if @company
-        @company.employees.all.each do |employee|
-          if employee.contact_info == params[:employee][:contact_info]
-              @employee = employee
-            end
-          end
-    end
-
-    if @employee
-      @employee.update(params[:employee])
-    end
-
-      if @company && @employee
-        session[:employee_id] = @employee.id
-        redirect to "/employee/#{@employee.slug}"
-      else
-        redirect to '/employee/signup'   #add different failure cases w appropriate views here
+    Employee.all.each do |employee|
+      if employee.contact_info == params[:employee][:contact_info]
+        @employee = employee
       end
+    end
+
+    if @company && @employee || @employee && !@company
+      session[:employee_id] = @employee.id
+      @employee.update(params[:employee])
+      redirect to "/employee/#{@employee.slug}"
+    elsif @company && !@employee
+      session[:company_id] = @company.id
+      redirect to '/employee/signup/employee-not-registered'
+    elsif !@company && !@employee #company hasn't registered yet and employee hasnt been created
+      redirect to '/employee/signup/company-not-registered'
+    end
   end
+
+  get '/employee/signup/company-not-registered' do
+    erb :'employee/company_not_registered'
+  end
+
+  get '/employee/signup/employee-not-registered' do
+    @company = Company.find_by_id(session[:company_id])
+    erb :'employee/employee_not_registered'
+  end
+
 
   get '/employees/:slug' do #admin side
     @employee = Employee.find_by(first_name: params[:slug].split('-')[0], last_name: params[:slug].split('-')[1])
