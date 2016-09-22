@@ -1,9 +1,11 @@
+
 html {
-  background: url("./assets/pencils.jpg") no-repeat center center fixed;
+  background: url("./assets/pencils_1.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+
 }
 
 h1 {
@@ -32,6 +34,7 @@ h1 {
   border: 5px solid #FFEB3B;
   border-radius: 2px;
   display: inline-block;
+  background: url("./assets/hexabump.png");
 
   float: left;
   margin-left: 10%;
@@ -51,6 +54,7 @@ h1 {
   display: inline-block;
   float: left;
   margin-left: 10%;
+  background: url("./assets/hexabump.png");
 
 }
 
@@ -80,7 +84,7 @@ h2 {
 
 table {
   border-collapse: collapse;
-  width: 85%;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -91,7 +95,8 @@ table {
   padding-left: 25px;
   padding-right: 25px;
   font-size: 2em;
-
+  background: url("./assets/hexabump.png");
+  color: white;
 }
 
 #checked_out_tools th {
@@ -111,6 +116,8 @@ table {
   padding-left: 25px;
   padding-right: 25px;
   font-size: 2em;
+  background: url("./assets/hexabump.png");
+  color: white;
 }
 
 #available_tools th{
@@ -132,7 +139,6 @@ background: #EEEEEE;
   margin: 0 auto;
   width: 50%;
   display: table;
-
 }
 
 .center_row {
@@ -157,5 +163,29 @@ background: #EEEEEE;
 #black_h1 {
   color: black;
   text-align: center;
-  
+
+}
+
+a {
+  color: #9E9E9E;
+}
+
+.logout {
+  width: 100%;
+  position: fixed;
+}
+
+h3 {
+  float: right;
+  margin-right: 3%;
+}
+
+h3 a {
+  float: right;
+  color: white;
+  margin: 0;
+}
+
+#last_table {
+  margin-bottom: 5%;
 }

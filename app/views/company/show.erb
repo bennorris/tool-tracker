@@ -7,6 +7,10 @@
       <title><%=@company.name%></title>
   </head>
   <body>
+    <div class="logout">
+
+      <h3><a href="/logout">log out</a></h3>
+  </div>
     <div class="title">
       <h1 id="title_heading">The <%=@company.name%> Equipment Tracker.</h1>
     </div>
@@ -145,7 +149,7 @@
 
 <!--ALL EMPLOYEES-->
 
-            <div class="tool_list">
+            <div id="last_table" class="tool_list">
               <div class="table_title">
             <h2 class="tools_heading">ALL EMPLOYEES:</h2>
               </div>
@@ -167,14 +171,26 @@
                   <td><%=employee.contact_info%></td>
                   <td><a href="/employees/<%=employee.slug%>">edit</a></td>
                   <td>
-                  <%if employee.tools.size > 0%>
+                  <%if employee.tools.size == 1%>
                     <%employee.tools.each do |tool|%>
-                      <%=tool.product%>,
+                      <%=tool.product%>
                       <%end%>
+                  <%elsif employee.tools.size > 1%>
+                        <%x = employee.tools.length%>
+                        <% i = 1%>
+                        <%employee.tools.each do |tool|%>
+                          <%if i < x%>
+                            <%=tool.product%>,
+                            <%i+=1%>
+                          <%else %>
+                            <%=tool.product%>
+                            <%end%>
+                          <%end%>
                   <%else%>
                         None
                         <%end%>
                 <%end%>
+              </td>
               </h2>
                   </tr>
                 </tbody>
@@ -183,6 +199,6 @@
 
 </div>
 
-    <h3><a href="/logout">log out</a></h3>
+
   </body>
 </html>
