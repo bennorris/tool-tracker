@@ -153,5 +153,27 @@ class ToolController < ApplicationController
     redirect to "/company/#{@company.slug}"
   end
 
+  get '/tools/delete/:id' do
+
+    if company_logged_in?
+      @tool = Tool.find_by_id(params[:id])
+      erb :'tools/delete'
+    else
+      redirect to '/login'
+    end
+  end
+
+  get '/tools/confirm-delete/:id' do
+    if company_logged_in?
+      @company = Company.find_by_id(session[:company_id])
+      @tool = Tool.find_by_id(params[:id])
+      Tool.delete(@tool)
+      redirect to "/company/#{@company.slug}"
+    else
+      redirect to '/login'
+    end
+
+  end
+
 
 end

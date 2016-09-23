@@ -32,6 +32,12 @@ class EmployeeController < ApplicationController
   end
 
   post '/employee/new' do #employee side signup
+    if params[:employee]
+      params[:employee].map do |key, value|
+          value.strip!
+        end
+      end
+      
     @company = Company.find_by(name: params[:company_name])
 
     Employee.all.each do |employee|
@@ -103,6 +109,26 @@ class EmployeeController < ApplicationController
     redirect to "/employee/#{@employee.slug}"
   end
 
+  get '/employee/delete/:id' do
+
+    if company_logged_in?
+      @employee = Employee.find_by_id(params[:id])
+      erb :'employee/delete'
+    else
+      redirect to '/login'
+    end
+  end
+
+  get '/employee/confirm-delete/:id' do
+    if company_logged_in?
+      @company = Company.find_by_id(session[:company_id])
+      @employee = Employee.find_by_id(params[:id])
+      Employee.delete(@employee)
+      redirect to "/company/#{@company.slug}"
+    else
+      redirect to '/login'
+    end
+  end
 
 
 end
