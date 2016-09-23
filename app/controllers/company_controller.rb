@@ -1,11 +1,14 @@
 class CompanyController < ApplicationController
 
   get '/company/signup' do
-    erb :'company/signup'
+    if logged_in?
+      logged_in?
+    else
+      erb :'company/signup'
+    end
   end
 
   get '/company/:slug' do
-    
     @company = Company.find_by_id(session[:company_id])
 
     if company_logged_in? && @company.slug == params[:slug]

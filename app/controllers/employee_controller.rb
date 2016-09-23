@@ -1,13 +1,11 @@
 class EmployeeController < ApplicationController
 
   get '/employee/signup' do #employee side
-    if company_logged_in? && @company.slug == params[:slug]
-      erb :'company/show'
-    elsif company_logged_in?
-      redirect to "/company/#{@company.slug}"
+    if logged_in?
+      logged_in?
     else
-    erb :'employee/signup'
-  end
+      erb :'employee/signup'
+    end
   end
 
   post '/employees/new' do   #admin side
@@ -23,8 +21,11 @@ class EmployeeController < ApplicationController
   get '/employee/:slug' do #employee side
     @employee = Employee.find_by_id(session[:employee_id])
     @company = Company.find_by_id(@employee.company_id)
+
     if employee_logged_in?
       erb :'employee/show_profile'
+    elsif company_logged_in?
+      redirect to "/company/#{@company.slug}"
     else
       redirect to '/login'
     end
@@ -44,7 +45,7 @@ class EmployeeController < ApplicationController
       @employee.update(params[:employee])
       redirect to "/employee/#{@employee.slug}"
     elsif @company && !@employee
-      session[:company_id] = @company.id
+      session[:signup_id] = @company.id
       redirect to '/employee/signup/employee-not-registered'
     elsif !@company && !@employee #company hasn't registered yet and employee hasnt been created
       redirect to '/employee/signup/company-not-registered'
@@ -52,12 +53,20 @@ class EmployeeController < ApplicationController
   end
 
   get '/employee/signup/company-not-registered' do
-    erb :'employee/company_not_registered'
+    if logged_in?
+      logged_in?
+    else
+      erb :'employee/company_not_registered'
+    end
   end
 
   get '/employee/signup/employee-not-registered' do
-    @company = Company.find_by_id(session[:company_id])
-    erb :'employee/employee_not_registered'
+    if logged_in?
+      logged_in?
+    else
+      @company = Company.find_by_id(session[:signup_id])
+      erb :'employee/employee_not_registered'
+    end
   end
 
 

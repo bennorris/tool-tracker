@@ -12,7 +12,7 @@ end
 helpers do
 
   def logged_in?
-    @company = Company.find_by_id(session[:company_id])   #need better solution here in case ID matches both
+    @company = Company.find_by_id(session[:company_id])  
     @employee = Employee.find_by_id(session[:employee_id])
 
     if company_logged_in?
@@ -25,6 +25,7 @@ helpers do
    def company_logged_in?
      if session[:company_id]
        true
+       @company = Company.find_by_id(session[:company_id])
      else
        false
      end
@@ -33,6 +34,7 @@ helpers do
    def employee_logged_in?
      if session[:employee_id]
        true
+       @employee = Employee.find_by_id(session[:employee_id])
      else
        false
      end
