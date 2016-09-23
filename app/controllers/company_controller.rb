@@ -34,4 +34,24 @@ class CompanyController < ApplicationController
       redirect to "/company/#{@company.slug}"
   end
 
-end
+  get '/delete-company-account' do
+
+    if company_logged_in?
+      erb :'company/delete'
+    else
+      redirect to '/login'
+    end
+  end
+
+    get '/delete-company' do
+      @company = Company.find_by_id(session[:company_id])
+
+      if company_logged_in?
+        Company.delete(@company)
+        redirect to '/login'
+      else
+        redirect to '/login'
+      end
+    end
+
+  end

@@ -195,3 +195,8 @@ h3 a {
 #last_table {
   margin-bottom: 5%;
 }
+
+.delete_account {
+  text-align: center;
+  width: 100%;
+}

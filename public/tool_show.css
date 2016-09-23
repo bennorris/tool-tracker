@@ -80,3 +80,12 @@ h1 a {
   margin-bottom: 2%;
   color: white;
 }
+
+.delete_box {
+  border: 5px solid white;
+  padding: 5px;
+}
+
+.delete_box:hover {
+  background: red;
+}
