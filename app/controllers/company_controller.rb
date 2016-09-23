@@ -5,7 +5,7 @@ class CompanyController < ApplicationController
   end
 
   get '/company/:slug' do
-
+    
     @company = Company.find_by_id(session[:company_id])
 
     if company_logged_in? && @company.slug == params[:slug]

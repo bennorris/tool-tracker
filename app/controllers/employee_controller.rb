@@ -1,7 +1,13 @@
 class EmployeeController < ApplicationController
 
   get '/employee/signup' do #employee side
+    if company_logged_in? && @company.slug == params[:slug]
+      erb :'company/show'
+    elsif company_logged_in?
+      redirect to "/company/#{@company.slug}"
+    else
     erb :'employee/signup'
+  end
   end
 
   post '/employees/new' do   #admin side
