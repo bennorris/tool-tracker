@@ -40,6 +40,23 @@
   <br></br>
   <label>Are you returning this tool?</label> <input type="checkbox" name="available" value="yes"><label> Yes  </label>
   <br></br>
+    <%if flash[:selected_both]%>
+    <div id="flash">
+      <%=flash[:selected_both]%>
+    </div>
+    <br>
+    <%elsif flash[:already_out]%>
+    <div id="flash">
+      <%=flash[:already_out]%>
+    </div>
+    <br>
+    <%elsif flash[:not_yours]%>
+    <div id="flash">
+      <%=flash[:not_yours]%>
+    </div>
+    <br>
+    <%end%>
+
   <input type="submit" name="submit" value="Edit Tool">
   <input type="hidden" name="tool_id" value="<%=@tool.id%>">
 </form>

@@ -69,9 +69,14 @@ class ToolController < ApplicationController
     @employee = Employee.find_by_id(session[:employee_id])
 
     if params[:not_available] && params[:available]
-      erb :'tools/tools_error_five'
+      flash[:selected_both] = "Oops, you submitted 'Yes' to both 'checking out' and 'returning.' Please select one."
+      redirect to "tools/#{@tool.slug}"
     elsif params[:not_available] && @employee.tools.include?(@tool)
-      erb :'tools/tools_error_four'
+      flash[:already_out] = "Oops, you tried to check out a product that you've already checked out."
+      redirect to "tools/#{@tool.slug}"
+    elsif params[:available] && !@employee.tools.include?(@tool)
+      flash[:not_yours] = "Sorry, you can't return a tool that you haven't checked out."
+      redirect to "tools/#{@tool.slug}"
     elsif params[:not_available] && !@employee.tools.include?(@tool)#checking out the tool
       @tool.available = false
       @employee.tools << @tool
@@ -97,7 +102,7 @@ class ToolController < ApplicationController
           @tool.save
         end
     end
-    
+
     redirect to "/company/#{@company.slug}"
   end
 

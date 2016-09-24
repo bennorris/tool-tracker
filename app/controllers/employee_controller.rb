@@ -58,23 +58,6 @@ class EmployeeController < ApplicationController
     end
   end
 
-  get '/employee/signup/company-not-registered' do
-    if logged_in?
-      logged_in?
-    else
-      erb :'employee/company_not_registered'
-    end
-  end
-
-  get '/employee/signup/employee-not-registered' do
-    if logged_in?
-      logged_in?
-    else
-      @company = Company.find_by_id(session[:signup_id])
-      erb :'employee/employee_not_registered'
-    end
-  end
-
 
   get '/employees/:slug' do #admin side
     @employee = Employee.find_by(first_name: params[:slug].split('-')[0], last_name: params[:slug].split('-')[1])
