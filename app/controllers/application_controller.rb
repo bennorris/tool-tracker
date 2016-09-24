@@ -88,14 +88,6 @@ post '/home' do
 
 end
 
-get '/login/failed' do
-  if logged_in?
-    logged_in?
-  else
-    erb :'home/login_failed'
-  end
-end
-
 get '/logout' do
   session.clear
   redirect to '/login'
