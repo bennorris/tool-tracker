@@ -6,6 +6,19 @@
     <title>Login</title>
   </head>
   <body>
+    <%if flash[:wrong_email]%>
+      <div id="flash_message">
+        <h1 id="flash_heading"><%=flash[:wrong_email]%></h1>
+      </div>
+    <%elsif flash[:wrong_password]%>
+      <div id="flash_message">
+        <h1 id="flash_heading"><%=flash[:wrong_password]%></h1>
+      </div>
+    <%elsif flash[:wrong_password]%>
+        <div id="flash_message">
+          <h1 id="flash_heading"><%=flash[:wrong_password]%></h1>
+        </div>
+      <%end%>
     <div class="user_input">
       <h1>Log into your account:</h1>
   <form action="/home" method="post">
