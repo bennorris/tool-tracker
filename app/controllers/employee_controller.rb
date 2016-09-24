@@ -37,24 +37,24 @@ class EmployeeController < ApplicationController
           value.strip!
         end
       end
-      
-    @company = Company.find_by(name: params[:company_name])
 
-    Employee.all.each do |employee|
-      if employee.contact_info == params[:employee][:contact_info]
-        @employee = employee
-      end
-    end
+  @company = Company.find_by(name: params[:company_name])
+  @employee = Employee.find_by(contact_info: params[:employee][:contact_info])
 
-    if @company && @employee || @employee && !@company
+    if params[:employee][:password] != params[:password_confirmation]
+      flash[:password_mismatch] = "Please enter matching passwords."
+      redirect to '/employee/signup'
+    elsif @employee
       session[:employee_id] = @employee.id
       @employee.update(params[:employee])
       redirect to "/employee/#{@employee.slug}"
     elsif @company && !@employee
+      flash[:employee_not_registered] = "Sorry, this email address hasn't been registered. If you think this is an error, please contact #{@company.email}"
       session[:signup_id] = @company.id
-      redirect to '/employee/signup/employee-not-registered'
+      redirect to '/employee/signup'
     elsif !@company && !@employee #company hasn't registered yet and employee hasnt been created
-      redirect to '/employee/signup/company-not-registered'
+      flash[:company_not_registered] = "Sorry, we don't have any record of the company you entered. If you'd like to register your company,"
+      redirect to '/employee/signup'
     end
   end
 

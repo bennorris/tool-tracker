@@ -28,78 +28,27 @@ class ToolController < ApplicationController
     end
   end
 
-  get '/tools/:slug/error-1' do
-    @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
-    @company = Company.find_by_id(session[:company_id])
-
-    if company_logged_in? && @tool.company_id == @company.id
-      erb :'tools/show_individual_error_one'
-    elsif company_logged_in?
-      redirect to "/company/#{@company.slug}"
-    else
-      redirect to '/login'
-    end
-  end
-
-
-
-  get '/tools/:slug/error-2' do
-    @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
-    @company = Company.find_by_id(session[:company_id])
-
-    if company_logged_in? && @tool.company_id == @company.id
-      erb :'tools/show_individual_error_two'
-    elsif company_logged_in?
-      redirect to "/company/#{@company.slug}"
-    else
-      redirect to '/login'
-    end
-  end
-
-  get '/tools/:slug/error-3' do
-    @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
-    @company = Company.find_by_id(session[:company_id])
-
-    if company_logged_in? && @tool.company_id == @company.id
-      erb :'tools/show_individual_error_three'
-    elsif company_logged_in?
-      redirect to "/company/#{@company.slug}"
-    else
-      redirect to '/login'
-    end
-  end
-
-  get '/tools/:slug/error-6' do
-    @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
-    @company = Company.find_by_id(session[:company_id])
-
-    if company_logged_in? && @tool.company_id == @company.id
-      erb :'tools/show_individual_error_six'
-    elsif company_logged_in?
-      redirect to "/company/#{@company.slug}"
-    else
-      redirect to '/login'
-    end
-  end
-
   post '/tools' do
 
     @tool = Tool.find_by_id(params[:tool_id])
     @company = Company.find_by_id(session[:company_id])
-
 
     if params[:available] && !params[:employee] && !params[:not_available]
       @tool.available = true
       @tool.employees.clear
       @tool.update(params[:tool])
     elsif !params[:available] && !params[:not_available] #no answer to available
-      redirect to "/tools/#{@tool.slug}/error-3"
+      flash[:no_selection] = "Please select either 'Yes' or 'No' to 'Is it Available?'"
+      redirect to "/tools/#{@tool.slug}"
     elsif params[:available] && params[:not_available] #yes and no to available
-      redirect to "/tools/#{@tool.slug}/error-6"
+      flash[:yes_and_no] = "Please select either 'Yes' or 'No', not both."
+      redirect to "/tools/#{@tool.slug}"
     elsif params[:available] && params[:employee] #available but assigned to employee
-        redirect to "/tools/#{@tool.slug}/error-1"
+      flash[:error_1] = "The tool cannot be available and assigned to an employee at the same time. If you select 'Yes' to 'Is it available?', please uncheck all employees."
+      redirect to "/tools/#{@tool.slug}"
     elsif !params[:not_available].empty? && !params[:employee] #selected not avail but didn't assign employee
-        redirect to "/tools/#{@tool.slug}/error-2"
+      flash[:error_2] = "The tool cannot be checked out unless it is assigned to an employee. If you select 'no' to 'Is it Available?', please select an employee too."
+      redirect to "/tools/#{@tool.slug}"
     elsif params[:not_available]
       @tool.employees.clear
       @tool.available = false
@@ -143,18 +92,16 @@ class ToolController < ApplicationController
     params[:tool].each do |key, value|
       @tool = Tool.find_by_id(value)
       @employee.tools.delete(@tool)
-
-      if @tool.employees.empty?
+        if @tool.employees.empty?
           @tool.available = true
           @tool.save
-      end
+        end
     end
-
+    
     redirect to "/company/#{@company.slug}"
   end
 
   get '/tools/delete/:id' do
-
     if company_logged_in?
       @tool = Tool.find_by_id(params[:id])
       erb :'tools/delete'
@@ -172,7 +119,6 @@ class ToolController < ApplicationController
     else
       redirect to '/login'
     end
-
   end
 
 

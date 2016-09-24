@@ -37,6 +37,23 @@
   <label for="tool_notes">Notes: <input id="tool_notes" type="text" name="tool[notes]" value="<%=@tool.notes%>"></label><br>
   <br></br>
   <label>Is it available?</label> <input type="checkbox" name="available" value="yes" <%='checked' if @tool.available%>><label> Yes  </label><input type="checkbox" name="not_available" value="no" <%='checked' if !@tool.available%>><label> No</label><br>
+  <%if flash[:no_selection]%>
+    <div id="flash">
+      <%=flash[:no_selection]%>
+    </div>
+    <%elsif flash[:yes_and_no]%>
+      <div id="flash">
+        <%=flash[:yes_and_no]%>
+      </div>
+  <%elsif flash[:error_1]%>
+        <div id="flash">
+          <%=flash[:error_1]%>
+        </div>
+  <%elsif flash[:error_2]%>
+        <div id="flash">
+            <%=flash[:error_2]%>
+          </div>
+    <%end%>
   <br></br>
   <label>If not available, who checked it out?</label><br>
   <br></br>

@@ -29,3 +29,7 @@ input {
   font-family: Helvetica;
   font-size: 2em;
 }
+
+a {
+  color: yellow;
+}

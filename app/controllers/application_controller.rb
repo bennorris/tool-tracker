@@ -77,7 +77,6 @@ post '/home' do
       redirect to "/employee/#{@employee.slug}"
   elsif @company && @company.authenticate(params[:user][:password])
       session[:company_id] = @company.id
-
       redirect to "/company/#{@company.slug}"
   else
     redirect to '/login/failed'

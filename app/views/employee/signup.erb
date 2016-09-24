@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="<%=url('/company_signup.css')%>" charset="utf-8">
-    <title>Company Signup</title>
+    <title>Employee Signup</title>
   </head>
   <body>
     <div class="signup_form">
@@ -11,9 +11,24 @@
       <label for="company_name">First Name: <input type="text" id="company_name" name="employee[first_name]" required></label><br>
       <label for="contact_name">Last Name: <input type="text" name="employee[last_name]" id="contact_name" required></label><br>
       <label for="company">Company: <input type="text" name="company_name" required></label><br>
+      <%if flash[:company_not_registered]%>
+        <div id="fail_message">
+          <%=flash[:company_not_registered]%> <a href="/company/signup">please visit this page.</a>
+        </div>
+        <%end%>
       <label for="email">Email: <input type="text" name="employee[contact_info]" required></label><br>
+      <%if flash[:employee_not_registered]%>
+        <div id="fail_message">
+          <%=flash[:employee_not_registered]%>
+        </div>
+        <%end%>
       <label for="password">Password: <input type="password" name="employee[password]" required id="password"></label><br>
       <label for="password_confirm">Confirm Password: <input type="password" name="password_confirmation" id="password_confirm" required></label><br>
+      <%if flash[:password_mismatch]%>
+        <div id="fail_message">
+          <%=flash[:password_mismatch]%>
+        </div>
+        <%end%>
       <br></br>
       <input type="submit" name="submit" value="Create Account">
     </form>
