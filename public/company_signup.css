@@ -23,3 +23,9 @@ input {
   font-size: 0.75em;
 
 }
+
+#fail_message {
+  color: red;
+  font-family: Helvetica;
+  font-size: 2em;
+}

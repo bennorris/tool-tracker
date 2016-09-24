@@ -7,16 +7,39 @@
     <title>Company Signup</title>
   </head>
   <body>
+
     <div class="signup_form">
     <form action="/company" method="post">
       <label for="company_name">Company Name: <input type="text" id="company_name" name="company[name]" required></label><br>
+      <%if flash[:company_exists]%>
+      <div id="fail_message">
+          <%=flash[:company_exists]%>
+        </div>
+        <%end%>
       <label for="contact_name">Your Name: <input type="text" name="company[contact_name]" id="contact_name" required></label><br>
       <label for="email">Email: <input type="text" name="company[email]" required></label><br>
+      <%if flash[:email_exists]%>
+      <div id="fail_message">
+          <%=flash[:email_exists]%>
+        </div>
+        <%end%>
+      <%if flash[:email_fail]%>
+        <div id="fail_message">
+            <%=flash[:email_fail]%>
+          </div>
+          <%end%>
       <label for="password">Password: <input type="password" name="company[password]" required id="password"></label><br>
+      <%if flash[:password_fail]%>
+          <div id="fail_message">
+            <%=flash[:password_fail]%>
+          </div>
+          <%end%>
       <label for="password_confirm">Confirm Password: <input type="password" name="[password_confirmation]" id="password_confirm" required></label><br>
       <br></br>
       <input type="submit" name="submit" value="Create Account">
     </form>
+
+
   </div>
   </body>
 </html>

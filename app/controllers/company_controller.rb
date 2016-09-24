@@ -1,5 +1,20 @@
 class CompanyController < ApplicationController
 
+
+helpers do
+
+  def email_exists?
+      Company.find_by(email: params[:company][:email])
+  end
+
+  def company_exists?
+      Company.find_by(name: params[:company][:name])
+  end
+
+end
+
+
+
   get '/company/signup' do
     if logged_in?
       logged_in?
@@ -26,7 +41,17 @@ class CompanyController < ApplicationController
 
       if params[:company][:name].empty? || params[:company][:contact_name].empty? || params[:company][:email].empty? || params[:company][:password].empty?
         redirect to '/company/signup'
+      elsif !params[:company][:email].include?("@") || !params[:company][:email].include?(".")
+        flash[:email_fail] = "Please enter a valid email address."
+        redirect to '/company/signup'
       elsif params[:company][:password] != params[:password_confirmation]
+        flash[:password_fail] = "Please enter matching passwords."
+        redirect to '/company/signup'
+      elsif email_exists?
+        flash[:email_exists] = "This email address has already been registered."
+        redirect to '/company/signup'
+      elsif company_exists?
+        flash[:company_exists] = "This company has already been registered."
         redirect to '/company/signup'
       end
       @company = Company.new(params[:company])
