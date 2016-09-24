@@ -7,6 +7,12 @@
       <title><%=@company.name%></title>
   </head>
   <body>
+    <%if flash[:co_success]%>
+      <div id='flash' class='co_success'>
+          <%= flash[:co_success] %>
+      </div>
+      <%end%>
+
     <div class="logout">
 
       <h3><a href="/logout">log out</a></h3>

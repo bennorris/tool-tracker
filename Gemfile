@@ -11,6 +11,7 @@ gem 'pry'
 gem 'bcrypt'
 gem 'sqlite3'
 gem 'require_all'
+gem 'sinatra-flash'
 
 group :test do
   gem 'rack-test'

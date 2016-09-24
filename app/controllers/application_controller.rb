@@ -1,4 +1,5 @@
 require './config/environment'
+require 'sinatra/flash'
 
 class ApplicationController < Sinatra::Base
 
@@ -6,13 +7,14 @@ configure do
   set :public_folder, 'public'
   set :views, 'app/views'
   enable :sessions
+  register Sinatra::Flash
   set :session_secret, "thesecretofsecrets"
 end
 
 helpers do
 
   def logged_in?
-    @company = Company.find_by_id(session[:company_id])  
+    @company = Company.find_by_id(session[:company_id])
     @employee = Employee.find_by_id(session[:employee_id])
 
     if company_logged_in?
@@ -70,12 +72,12 @@ post '/home' do
   @employee = Employee.find_by(contact_info: params[:user][:username])
   @company = Company.find_by(email: params[:user][:username])
 
-
   if @employee && @employee.authenticate(params[:user][:password])
       session[:employee_id] = @employee.id
       redirect to "/employee/#{@employee.slug}"
   elsif @company && @company.authenticate(params[:user][:password])
       session[:company_id] = @company.id
+
       redirect to "/company/#{@company.slug}"
   else
     redirect to '/login/failed'

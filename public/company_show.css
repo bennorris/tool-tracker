@@ -200,3 +200,11 @@ h3 a {
   text-align: center;
   width: 100%;
 }
+
+#flash {
+  font-family: Helvetica;
+  font-size: 2em;
+  color: #66BB6A;
+  margin-left: 2%;
+  text-align: center;
+}

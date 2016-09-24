@@ -9,6 +9,7 @@ class CompanyController < ApplicationController
   end
 
   get '/company/:slug' do
+
     @company = Company.find_by_id(session[:company_id])
 
     if company_logged_in? && @company.slug == params[:slug]
@@ -21,6 +22,7 @@ class CompanyController < ApplicationController
   end
 
   post '/company' do
+    flash[:co_success] = "Success! Thanks for signing up!"
 
       if params[:company][:name].empty? || params[:company][:contact_name].empty? || params[:company][:email].empty? || params[:company][:password].empty?
         redirect to '/company/signup'
