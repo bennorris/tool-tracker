@@ -9,11 +9,15 @@ gem 'activerecord', :require => 'active_record'
 gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'pry'
 gem 'bcrypt'
-gem 'sqlite3'
+
 gem 'pg'
 gem 'require_all'
 gem 'sinatra-flash'
 
 group :test do
   gem 'rack-test'
+end
+
+group :development do
+  gem 'sqlite3'
 end
