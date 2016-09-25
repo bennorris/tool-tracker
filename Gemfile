@@ -10,6 +10,7 @@ gem 'sinatra-activerecord', :require => 'sinatra/activerecord'
 gem 'pry'
 gem 'bcrypt'
 gem 'sqlite3'
+gem 'pg'
 gem 'require_all'
 gem 'sinatra-flash'
 

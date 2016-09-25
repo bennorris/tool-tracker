@@ -1,0 +1,16 @@
+development:
+  adapter: postgresql
+  database: tool_tracker_db_development
+  pool: 5
+  timeout: 5000
+test:
+  adapter: postgresql
+  database: tool_tracker_db_test
+  pool: 5
+  timeout: 5000
+
+production:
+  adapter: postgresql
+  database: tool_tracker_db_production
+  pool: 5
+  timeout: 5000
