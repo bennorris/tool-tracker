@@ -1,12 +1,6 @@
 require './config/environment'
 
+use CompanyController
 use ToolController
 use EmployeeController
-
-
-
-
-
-
-use CompanyController
 run ApplicationController
