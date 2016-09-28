@@ -26,7 +26,6 @@ helpers do
 
    def company_logged_in?
      if session[:company_id]
-       true
        @company = Company.find_by_id(session[:company_id])
      else
        false
@@ -35,7 +34,6 @@ helpers do
 
    def employee_logged_in?
      if session[:employee_id]
-       true
        @employee = Employee.find_by_id(session[:employee_id])
      else
        false
