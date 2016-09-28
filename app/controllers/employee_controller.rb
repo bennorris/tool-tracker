@@ -1,6 +1,6 @@
 class EmployeeController < ApplicationController
 
-  get '/employee/signup' do #employee side
+  get '/employee/signup' do
     if !logged_in?
       erb :'employee/signup'
     else
@@ -8,17 +8,7 @@ class EmployeeController < ApplicationController
     end
   end
 
-  post '/employees/new' do   #admin side
-    params[:employee][:password] = "placeholder"
-    @company = Company.find_by_id(session[:company_id])
-    @company.employees.create(params[:employee])
-    redirect to "/company/#{@company.slug}"
-  end
-
-  get '/employee/:slug' do #employee side
-    @employee = Employee.find_by_id(session[:employee_id])
-    @company = Company.find_by_id(@employee.company_id)
-
+  get '/employee/:slug' do
     if employee_logged_in?
       erb :'employee/show_profile'
     elsif company_logged_in?
@@ -28,7 +18,7 @@ class EmployeeController < ApplicationController
     end
   end
 
-  post '/employee/new' do #employee side signup
+  post '/employee/new' do
     if params[:employee]
       params[:employee].map do |key, value|
           value.strip!
@@ -55,30 +45,6 @@ class EmployeeController < ApplicationController
     end
   end
 
-
-  get '/employees/:slug' do #admin side
-    @employee = Employee.find_by(first_name: params[:slug].split('-')[0], last_name: params[:slug].split('-')[1])
-    @company = Company.find_by_id(session[:company_id])
-
-    if company_logged_in? && @company.employees.include?(@employee)
-      erb :'employee/show'
-    elsif company_logged_in?
-      redirect to "/company/#{@company.slug}"
-    else
-      redirect to '/login'
-    end
-  end
-
-  post '/employees' do #admin side
-    @employee = Employee.find_by_id(params[:id])
-    @employee.update(params[:employee])
-    @employee.save
-
-    @company = Company.find_by_id(session[:company_id])
-
-    redirect to "/company/#{@company.slug}"
-  end
-
   post '/employee/edited' do
     @employee = Employee.find_by_id(session[:employee_id])
     @employee.first_name = params[:employee][:first_name]
@@ -89,26 +55,59 @@ class EmployeeController < ApplicationController
     redirect to "/employee/#{@employee.slug}"
   end
 
-  get '/employee/delete/:id' do
-
-    if company_logged_in?
-      @employee = Employee.find_by_id(params[:id])
-      erb :'employee/delete'
-    else
-      redirect to '/login'
-    end
-  end
-
-  get '/employee/confirm-delete/:id' do
-    if company_logged_in?
-      @company = Company.find_by_id(session[:company_id])
-      @employee = Employee.find_by_id(params[:id])
-      Employee.delete(@employee)
-      redirect to "/company/#{@company.slug}"
-    else
-      redirect to '/login'
-    end
-  end
+  # get '/employees/:slug' do #admin side
+  #   @employee = Employee.find_by(first_name: params[:slug].split('-')[0], last_name: params[:slug].split('-')[1])
+  #   @company = Company.find_by_id(session[:company_id])
+  #
+  #   if company_logged_in? && @company.employees.include?(@employee)
+  #     erb :'employee/show'
+  #   elsif company_logged_in?
+  #     redirect to "/company/#{@company.slug}"
+  #   else
+  #     redirect to '/login'
+  #   end
+  # end
+  #
+  # post '/employees' do #admin side
+  #   @employee = Employee.find_by_id(params[:id])
+  #   @employee.update(params[:employee])
+  #   @employee.save
+  #
+  #   @company = Company.find_by_id(session[:company_id])
+  #
+  #   redirect to "/company/#{@company.slug}"
+  # end
+  #
+  # post '/employee/edited' do
+  #   @employee = Employee.find_by_id(session[:employee_id])
+  #   @employee.first_name = params[:employee][:first_name]
+  #   @employee.last_name = params[:employee][:last_name]
+  #   @employee.contact_info = params[:employee][:contact_info]
+  #   @employee.save
+  #
+  #   redirect to "/employee/#{@employee.slug}"
+  # end
+  #
+  # get '/employee/delete/:id' do
+  #
+  #   if company_logged_in?
+  #     @employee = Employee.find_by_id(params[:id])
+  #     erb :'employee/delete'
+  #   else
+  #     redirect to '/login'
+  #   end
+  # end
+  #
+  # get '/employee/confirm-delete/:id' do
+  #   if company_logged_in?
+  #     @company = Company.find_by_id(session[:company_id])
+  #     @employee = Employee.find_by_id(params[:id])
+  #     Employee.delete(@employee)
+  #     redirect to "/company/#{@company.slug}"
+  #   else
+  #     redirect to '/login'
+  #   end
+  # end
 
 
 end

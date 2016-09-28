@@ -1,16 +1,14 @@
 class CompanyController < ApplicationController
 
-helpers do
-  def email_exists?
-    Company.find_by(email: params[:company][:email])
+  helpers do
+    def email_exists?
+      Company.find_by(email: params[:company][:email])
+    end
+
+    def company_exists?
+      Company.find_by(name: params[:company][:name])
+    end
   end
-
-  def company_exists?
-    Company.find_by(name: params[:company][:name])
-  end
-end
-
-
 
   get '/company/signup' do
     if !logged_in?
