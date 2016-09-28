@@ -7,6 +7,9 @@
   </head>
   <body>
     <div id="cover">
+      <%if flash[:account_deleted]%>
+        <h1><%=flash[:account_deleted]%></h1><br>
+        <%end%>
       <h1>Welcome to Tool Tracker,</h1>
       <h2 id="tagline">the easiest way to keep<br>track of company equipment.</h2>
       <h2><a href="/login">Log in.</a></h2>
