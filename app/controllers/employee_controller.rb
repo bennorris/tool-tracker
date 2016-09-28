@@ -1,20 +1,17 @@
 class EmployeeController < ApplicationController
 
   get '/employee/signup' do #employee side
-    if logged_in?
-      logged_in?
-    else
+    if !logged_in?
       erb :'employee/signup'
+    else
+      logged_in?
     end
   end
 
   post '/employees/new' do   #admin side
     params[:employee][:password] = "placeholder"
-    @employee = Employee.new(params[:employee])
     @company = Company.find_by_id(session[:company_id])
-    @company.employees << @employee
-    @company.save
-    @employee.save
+    @company.employees.create(params[:employee])
     redirect to "/company/#{@company.slug}"
   end
 
