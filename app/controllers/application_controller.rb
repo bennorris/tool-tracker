@@ -26,7 +26,6 @@ helpers do
 
    def company_logged_in?
      if session[:company_id]
-       true
        @company = Company.find_by_id(session[:company_id])
      else
        false
@@ -35,7 +34,6 @@ helpers do
 
    def employee_logged_in?
      if session[:employee_id]
-       true
        @employee = Employee.find_by_id(session[:employee_id])
      else
        false
@@ -45,26 +43,26 @@ helpers do
  end
 
 get '/' do
-  if logged_in?
-    logged_in?
-  else
+  if !logged_in?
     erb :'home/index'
+  else
+    logged_in?
   end
 end
 
 get '/login' do
-  if logged_in?
-    logged_in?
-  else
+  if !logged_in?
     erb :'home/login'
+  else
+    logged_in?
   end
 end
 
 get '/signup' do
-  if logged_in?
-    logged_in?
-  else
+  if !logged_in?
     erb :'home/signup'
+  else
+    logged_in?
   end
 end
 
