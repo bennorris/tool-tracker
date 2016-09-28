@@ -1,6 +1,11 @@
 class EmployerController < ApplicationController
 
+
 post '/employees/new' do
+  if params[:employee]
+    strip_params(params[:employee])
+  end
+
   params[:employee][:password] = "placeholder"
   @company = Company.find_by_id(session[:company_id])
   @company.employees.create(params[:employee])

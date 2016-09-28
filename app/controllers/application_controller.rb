@@ -26,7 +26,14 @@ helpers do
 
    def employee_logged_in?
      session[:employee_id] ? @employee = Employee.find_by_id(session[:employee_id]) : false
-   end 
+   end
+
+   def strip_params(params)
+     params.map do |key, value|
+         value.strip!
+     end
+   end
+
  end
 
 get '/' do
