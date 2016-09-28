@@ -34,8 +34,10 @@ end
 
   post '/company' do
     flash[:co_success] = "Success! Thanks for signing up!"
+    @company = Company.new(params[:company])
 
-      if params[:company][:name].empty? || params[:company][:contact_name].empty? || params[:company][:email].empty? || params[:company][:password].empty?
+      if !@company.save
+        flash[:empty_fields] = "Please fill out every field."
         redirect to '/company/signup'
       elsif !params[:company][:email].include?("@") || !params[:company][:email].include?(".")
         flash[:email_fail] = "Please enter a valid email address."
@@ -49,12 +51,11 @@ end
       elsif company_exists?
         flash[:company_exists] = "This company has already been registered."
         redirect to '/company/signup'
+      else
+        @company.save
+        session[:company_id] = @company.id
+        redirect to "/company/#{@company.slug}"
       end
-      @company = Company.new(params[:company])
-      @company.save
-      session[:company_id] = @company.id
-
-      redirect to "/company/#{@company.slug}"
   end
 
   get '/delete-company-account' do
