@@ -1,7 +1,8 @@
 require 'bundler/setup'
+Dir[File.dirname(__FILE__) + '/app/*.rb'].each {|file| require file }
 
 ENV['SINATRA_ENV'] ||= "development"
-require_all 'app'
+
 
 Bundler.require(:default, ENV['SINATRA_ENV'])
 #
