@@ -14,7 +14,7 @@ class ToolController < ApplicationController
     @company = Company.find_by_id(session[:company_id])
     @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
     @employee = Employee.find_by_id(session[:employee_id])
-  
+
     if company_logged_in? && @tool.company_id == @company.id
       erb :'tools/show_individual'
     elsif employee_logged_in? && @employee.company_id == @tool.company_id
