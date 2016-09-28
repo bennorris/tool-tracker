@@ -12,34 +12,21 @@ configure do
 end
 
 helpers do
-
   def logged_in?
-    @company = Company.find_by_id(session[:company_id])
-    @employee = Employee.find_by_id(session[:employee_id])
-
     if company_logged_in?
-        redirect to "/company/#{@company.slug}"
+      redirect to "/company/#{@company.slug}"
     elsif employee_logged_in?
-        redirect to "/employee/#{@employee.slug}"
-      end
+      redirect to "/employee/#{@employee.slug}"
+    end
   end
 
    def company_logged_in?
-     if session[:company_id]
-       @company = Company.find_by_id(session[:company_id])
-     else
-       false
-     end
+     session[:company_id] ? @company = Company.find_by_id(session[:company_id]) : false
    end
 
    def employee_logged_in?
-     if session[:employee_id]
-       @employee = Employee.find_by_id(session[:employee_id])
-     else
-       false
-     end
-   end
-
+     session[:employee_id] ? @employee = Employee.find_by_id(session[:employee_id]) : false
+   end 
  end
 
 get '/' do

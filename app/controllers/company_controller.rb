@@ -1,30 +1,26 @@
 class CompanyController < ApplicationController
 
-
 helpers do
-
   def email_exists?
-      Company.find_by(email: params[:company][:email])
+    Company.find_by(email: params[:company][:email])
   end
 
   def company_exists?
-      Company.find_by(name: params[:company][:name])
+    Company.find_by(name: params[:company][:name])
   end
-
 end
 
 
 
   get '/company/signup' do
-    if logged_in?
-      logged_in?
-    else
+    if !logged_in?
       erb :'company/signup'
+    else
+      logged_in?
     end
   end
 
   get '/company/:slug' do
-
     @company = Company.find_by_id(session[:company_id])
 
     if company_logged_in? && @company.slug == params[:slug]
