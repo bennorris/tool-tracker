@@ -48,7 +48,7 @@ class EmployeeController < ApplicationController
     if employee_logged_in?
       @employee.update(params[:employee])
     end
-    
+
     redirect to "/employee/#{@employee.slug}"
   end
 

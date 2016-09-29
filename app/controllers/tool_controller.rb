@@ -1,28 +1,21 @@
 class ToolController < ApplicationController
 
   post '/tools/new' do
-    @tool = Tool.new(params[:tool])
-    @company = Company.find_by(name: params[:company_name])
-    @company.tools << @tool
-    @company.save
-    @tool.save
-
-    redirect to "/company/#{@company.slug}"
+    if company_logged_in?
+      @company.tools.create(params[:tool])
+      redirect to "/company/#{@company.slug}"
+    else
+      redirect to '/login'
+    end
   end
 
   get '/tools/:slug' do
-    @company = Company.find_by_id(session[:company_id])
     @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
-    @employee = Employee.find_by_id(session[:employee_id])
 
     if company_logged_in? && @tool.company_id == @company.id
       erb :'tools/show_individual'
     elsif employee_logged_in? && @employee.company_id == @tool.company_id
       erb :'tools/show_individual_for_employee'
-    elsif company_logged_in?
-      redirect to "/company/#{@company.slug}"
-    elsif employee_logged_in?
-      redirect to "/employee/#{@employee.slug}"
     else
       redirect to '/login'
     end
