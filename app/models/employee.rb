@@ -12,10 +12,5 @@ class Employee < ActiveRecord::Base
     name.gsub(" ", "-")
   end
 
-  def self.delete_all_now
-    self.all.each do |employee|
-      employee.delete
-    end
-  end
 
 end
