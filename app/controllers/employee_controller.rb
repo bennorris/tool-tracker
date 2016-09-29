@@ -12,8 +12,6 @@ class EmployeeController < ApplicationController
     if employee_logged_in?
       @company = Company.find_by_id(@employee.company_id)
       erb :'employee/show_profile'
-    elsif company_logged_in?
-      redirect to "/company/#{@company.slug}"
     else
       redirect to '/login'
     end
