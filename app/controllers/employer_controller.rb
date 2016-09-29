@@ -14,6 +14,7 @@ end
 get '/employees/:slug' do
   @employee = Employee.find_by(first_name: params[:slug].split('-')[0], last_name: params[:slug].split('-')[1])
   if company_logged_in? && @company.employees.include?(@employee)
+    @employee_tools = @employee.tools
     erb :'employer/show_employee'
   else
     redirect to '/login'

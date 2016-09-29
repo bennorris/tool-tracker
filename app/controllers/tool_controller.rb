@@ -12,6 +12,7 @@ class ToolController < ApplicationController
   get '/tools/:slug' do
     @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
     if company_logged_in? && @tool.company_id == @company.id
+      @company_employees = @company.employees
       erb :'tools/show_individual'
     elsif employee_logged_in? && @employee.company_id == @tool.company_id
       erb :'tools/show_individual_for_employee'

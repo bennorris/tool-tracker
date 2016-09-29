@@ -57,8 +57,8 @@
   <br></br>
   <label>If not available, who checked it out?</label><br>
   <br></br>
-  <%if @company.employees.all.empty? == false %>
-      <%@company.employees.all.each.with_index do |employee,index|%>
+  <%if @company_employees.empty? == false %>
+      <%@company_employees.each.with_index do |employee,index|%>
           <input type="checkbox" name="employee[employee_<%=index%>]" value="<%=employee.name%>" <%='checked' if employee.tools.include?(@tool)%> ><label><%=employee.name%></label><br>
           <%end%>
         <%end%>
