@@ -11,6 +11,8 @@ class EmployeeController < ApplicationController
   get '/employee/:slug' do
     if employee_logged_in?
       @company = Company.find_by_id(@employee.company_id)
+      @company_tools = @company.tools
+      @employee_tools = @employee.tools
       erb :'employee/show_profile'
     else
       redirect to '/login'

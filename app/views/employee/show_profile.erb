@@ -29,7 +29,7 @@
         </tr>
       </thead>
       <tbody>
-          <%@company.tools.each do |tool|%>
+          <%@company_tools.each do |tool|%>
           <tr>
           <td><%=tool.product%></td>
           <td><%=tool.notes%></td>
@@ -67,8 +67,8 @@
           </thead>
           <tbody>
             <tr>
-              <%if !@employee.tools.empty?%>
-                <%@employee.tools.each do |tool|%>
+              <%if !@employee_tools.empty?%>
+                <%@employee_tools.each do |tool|%>
                 <td><%=tool.product%></td>
                 <td><%=tool.notes%></td>
                 <td><a href="/tools/<%=tool.slug%>">edit</a>
