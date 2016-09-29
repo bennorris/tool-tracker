@@ -5,7 +5,6 @@ post '/employees/new' do
   if params[:employee]
     strip_params(params[:employee])
   end
-
   params[:employee][:password] = "placeholder"
   @company = Company.find_by_id(session[:company_id])
   @company.employees.create(params[:employee])
@@ -23,7 +22,6 @@ end
 
 post '/employees' do
   @employee = Employee.find_by_id(params[:id])
-
   if company_logged_in? && @company.employees.include?(@employee)
     @employee = Employee.find_by_id(params[:id])
     @employee.update(params[:employee])

@@ -20,7 +20,6 @@ class CompanyController < ApplicationController
 
   get '/company/:slug' do
     @company = Company.find_by_id(session[:company_id])
-
     if company_logged_in? && @company.slug == params[:slug]
       erb :'company/show'
     elsif company_logged_in?
@@ -32,7 +31,6 @@ class CompanyController < ApplicationController
 
   post '/company' do
     flash[:co_success] = "Success! Thanks for signing up!"
-
     if !params[:company][:email].include?("@") || !params[:company][:email].include?(".")
       flash[:email_fail] = "Please enter a valid email address."
       redirect to '/company/signup'

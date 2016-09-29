@@ -11,7 +11,6 @@ class ToolController < ApplicationController
 
   get '/tools/:slug' do
     @tool = Tool.find_by(product: params[:slug].gsub("-", " "))
-
     if company_logged_in? && @tool.company_id == @company.id
       erb :'tools/show_individual'
     elsif employee_logged_in? && @employee.company_id == @tool.company_id
@@ -23,9 +22,7 @@ class ToolController < ApplicationController
 
   post '/tools' do #admin editing tool
     @tool = Tool.find_by_id(params[:tool_id])
-
     if company_logged_in? && @tool.company_id == @company.id
-
       if params[:available] && !params[:employee] && !params[:not_available]
         @tool.available = true
         @tool.employees.clear
@@ -46,7 +43,6 @@ class ToolController < ApplicationController
         @tool.employees.clear
         @tool.available = false
         @tool.update(params[:tool])
-
         params[:employee].each do |key, value|
           @employee = Employee.find_by(first_name: value.split(" ")[0], last_name: value.split(" ")[1])
           @tool.employees << @employee
@@ -59,7 +55,6 @@ class ToolController < ApplicationController
 
   post '/tools/edited' do  #employee editing tool
     @tool = Tool.find_by(params[:tool_id])
-
     if employee_logged_in
       if params[:not_available] && params[:available]
         flash[:selected_both] = "Oops, you submitted 'Yes' to both 'checking out' and 'returning.' Please select one."
@@ -101,7 +96,6 @@ class ToolController < ApplicationController
 
   get '/tools/delete/:id' do
     @tool = Tool.find_by_id(params[:id])
-
     if company_logged_in? && @company.tools.include?(@tool)
       erb :'tools/delete'
     else
@@ -111,7 +105,6 @@ class ToolController < ApplicationController
 
   get '/tools/confirm-delete/:id' do
     @tool = Tool.find_by_id(params[:id])
-
     if company_logged_in? && @company.tools.include?(@tool)
       Tool.delete(@tool)
       redirect to "/company/#{@company.slug}"
@@ -119,6 +112,5 @@ class ToolController < ApplicationController
       redirect to '/login'
     end
   end
-
 
 end

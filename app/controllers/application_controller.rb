@@ -63,7 +63,6 @@ end
 post '/home' do
   @employee = Employee.find_by(contact_info: params[:user][:username])
   @company = Company.find_by(email: params[:user][:username])
-
   if !@employee && !@company
     flash[:wrong_email] = "Sorry, the email address you entered hasn't been registered with us."
     redirect to '/login'
