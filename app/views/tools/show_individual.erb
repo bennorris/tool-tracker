@@ -59,7 +59,7 @@
   <br></br>
   <%if @company_employees.empty? == false %>
       <%@company_employees.each.with_index do |employee,index|%>
-          <input type="checkbox" name="employee[employee_<%=index%>]" value="<%=employee.name%>" <%='checked' if employee.tools.include?(@tool)%> ><label><%=employee.name%></label><br>
+          <input type="checkbox" name="employee[employee_ids][]" value="<%=employee.id%>" <%='checked' if employee.tools.include?(@tool)%> ><label><%=employee.name%></label><br>
           <%end%>
         <%end%>
       <br></br>

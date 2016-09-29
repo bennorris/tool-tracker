@@ -44,10 +44,7 @@ class ToolController < ApplicationController
         @tool.employees.clear
         @tool.available = false
         @tool.update(params[:tool])
-        params[:employee].each do |key, value|
-          @employee = Employee.find_by(first_name: value.split(" ")[0], last_name: value.split(" ")[1])
-          @tool.employees << @employee
-        end
+        @tool.employee_ids = params[:employee][:employee_ids]
       end
         @tool.save
     end
@@ -56,7 +53,7 @@ class ToolController < ApplicationController
 
   post '/tools/edited' do  #employee editing tool
     @tool = Tool.find_by(params[:tool_id])
-    if employee_logged_in
+    if employee_logged_in?
       if params[:not_available] && params[:available]
         flash[:selected_both] = "Oops, you submitted 'Yes' to both 'checking out' and 'returning.' Please select one."
         redirect to "tools/#{@tool.slug}"
