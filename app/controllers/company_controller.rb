@@ -19,11 +19,11 @@ class CompanyController < ApplicationController
   end
 
   get '/company/:slug' do
-    @company = Company.find_by_id(session[:company_id])
     if company_logged_in? && @company.slug == params[:slug]
+      @available_tools = @company.tools.where(available: true)
+      @unavailable_tools = @company.tools.where(available: false)
+      @all_tools = @company.tools
       erb :'company/show'
-    elsif company_logged_in?
-      redirect to "/company/#{@company.slug}"
     else
       redirect to '/login'
     end
